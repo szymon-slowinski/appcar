@@ -1,0 +1,36 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "project": ["tsconfig.json"],
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "plugins": ["react", "prettier"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "prettier",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+  ],
+  "rules": {
+    "no-console": "error",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "prefer-const": "error",
+    "@typescript-eslint/no-unused-vars": "error",
+    //TODO: remove no-explicit-any and ban-ts-comment rules
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/ban-ts-comment": "off"
+  }
+}
