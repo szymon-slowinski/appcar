@@ -9,7 +9,7 @@
     "node": true,
     "es6": true
   },
-  "plugins": ["react", "prettier"],
+  "plugins": ["react"],
   "settings": {
     "react": {
       "version": "detect"
@@ -17,11 +17,10 @@
   },
   "extends": [
     "plugin:react/recommended",
-    "prettier",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
     "no-console": "error",
