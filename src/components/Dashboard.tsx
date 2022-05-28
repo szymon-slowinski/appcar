@@ -79,7 +79,7 @@ const mdTheme = createTheme();
 export default function Dashboard() {
  const navigate = useNavigate()
  const [open, setOpen] = useState(true);
- const {userId} = useUser()
+ const {data} = useUser()
  const logOutMutation = useLogOut()
  
  if(logOutMutation.isSuccess){
@@ -123,7 +123,7 @@ export default function Dashboard() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-            Test{userId}
+            {`Name: ${data?.name} Surname: ${data?.surname} `} 
             </Typography>
             <IconButton 
             color="inherit"
@@ -180,7 +180,7 @@ export default function Dashboard() {
                     flexDirection: "column",
                     height: 240
                   }}
-                ></Paper>
+                >Test1</Paper>
               </Grid>
               {/* Recent Deposits */}
               <Grid item xs={12} md={4} lg={3}>
@@ -191,13 +191,13 @@ export default function Dashboard() {
                     flexDirection: "column",
                     height: 240
                   }}
-                ></Paper>
+                >Test2</Paper>
               </Grid>
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper
                   sx={{ p: 2, display: "flex", flexDirection: "column" }}
-                ></Paper>
+                >Test3</Paper>
               </Grid>
             </Grid>
           </Container>
