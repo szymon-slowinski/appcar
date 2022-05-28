@@ -3,15 +3,12 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import Link from "@mui/material/Link";
 
 function Copyright() {
   return (
     <Typography variant="body1" color="text.secondary">
       {"Copyright © "}
-      <Link color="inherit" href="#">
-        Szymon Słowiński 
-      </Link>{" "}
+        Szymon Słowiński <></> 
       {new Date().getFullYear()}
       {"."}
     </Typography>
@@ -23,13 +20,15 @@ export default function Footer() {
     <Box
       sx={{
         display: "flex",
-        flexDirection: "column",
+        justifyItems: "center",
+        justifyContent: "center"
       }}
     >
       <CssBaseline />
       <Box
         component="footer"
         sx={{
+          width: "100vw",
           py: 3,
           px: 2,
           mt: "auto",
@@ -40,9 +39,6 @@ export default function Footer() {
         }}
       >
         <Container maxWidth="sm">
-          <Typography variant="body1">
-            Footer
-          </Typography>
           <Copyright />
         </Container>
       </Box>

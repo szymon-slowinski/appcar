@@ -1,4 +1,5 @@
 import {Component,ReactNode} from "react";
+import Error500 from "./error pages/Error500";
 
 interface State {
     hasError: boolean;
@@ -22,7 +23,7 @@ export default class ErrorBoundary extends Component<ReactNode,State>{
 
   render() {
     if (this.state.hasError) {
-      return <h1>Something went wrong.</h1>;
+      return <Error500/>;
     }
 
     return this.props.children; 

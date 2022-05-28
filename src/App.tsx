@@ -14,7 +14,8 @@ const Navbar = React.lazy(()=> import('./components/Navbar'));
 const Signin = React.lazy(() => import ('./components/Signin'))
 const Dashboard = React.lazy(() => import ('./components/Dashboard'))
 const Footer = React.lazy(() => import ("./components/Footer"))
-
+const Page404 = React.lazy(()=> import ("./components/error pages/Error404") ) 
+const About = React.lazy(()=> import ('./components/About'))
 const queryClient = new QueryClient({
 defaultOptions:{
   queries:{
@@ -35,7 +36,9 @@ function App() {
       <Routes>
         <Route path="/home"  element={<HomeSite/>} />
         <Route path='/login' element={<Signin/>}/>
+        <Route path= '/about' element={<About/>}/>
         <Route path='/' element={<Dashboard/>}/>
+        <Route path='*' element={<Page404/>}/>
       </Routes>
       </BrowserRouter>
       </AuthProvider>

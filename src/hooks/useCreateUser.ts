@@ -31,7 +31,6 @@ if(error){
 
 export const  useCreateUser = () => {
   const navigate = useNavigate()
-
   return useMutation(
     async (user: CreateUser) => {
       const createdUser = await createUser(user);

@@ -21,7 +21,7 @@ import { useState } from "react";
 import PrivateRoute from "./PrivateRoute";
 import {useUser} from "../hooks/useUser";
 import useLogOut from "../hooks/useLogOut";
-import { CircularProgress } from "@mui/material";
+
 
 const drawerWidth = 240;
 
@@ -79,7 +79,7 @@ const mdTheme = createTheme();
 export default function Dashboard() {
  const navigate = useNavigate()
  const [open, setOpen] = useState(true);
- const {data,isLoading} = useUser()
+ const {userId} = useUser()
  const logOutMutation = useLogOut()
  
  if(logOutMutation.isSuccess){
@@ -123,7 +123,7 @@ export default function Dashboard() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-             {isLoading ? <span><CircularProgress/></span> : data?.name} 
+            Test{userId}
             </Typography>
             <IconButton 
             color="inherit"
