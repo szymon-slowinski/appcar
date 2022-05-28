@@ -1,4 +1,4 @@
-import { useRef} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -10,20 +10,48 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { FormControlLabel } from '@mui/material';
+import { Alert, FormControlLabel } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
+import {useLogin} from '../hooks/useLogin';
+import { FormikProvider, useFormik } from 'formik';
+import * as yup from "yup";
+import { emailValidation, passwordValidation } from './common/validation';
 
 const theme = createTheme();
 
 export function LoginForm() {
-    const emailRef = useRef<HTMLInputElement>( null);
-    const passwordRef = useRef<HTMLInputElement>( null);
-   
-     async function handleSubmit(event:React.FormEvent<HTMLFormElement>) {
-        event.preventDefault()
-       
-     
-    } 
+const loginMutation = useLogin()
+const [rememberedEmail,setRememberedEmail] = useState("")
+const [rememberMe, setRememberMe] = useState(false);
+
+useEffect(() => {
+  if(typeof window !== "undefined"){
+    setRememberedEmail(localStorage.getItem("loginEmail")|| "")
+    if(rememberedEmail){
+      setRememberMe(true)
+    }
+  }
+},[rememberedEmail])
+
+const formik = useFormik({
+  initialValues: { email: rememberedEmail, password: "" },
+  enableReinitialize: true,
+  validationSchema: yup.object().shape({
+    email: emailValidation,
+    password: passwordValidation
+  }),
+  onSubmit: values => {
+    loginMutation.mutate(values);
+      if (rememberMe) {
+        localStorage.setItem("loginEmail", values.email);
+      } else {
+        localStorage.removeItem("loginEmail");
+      }
+  }
+});
+const handleRememberMeChecked = useCallback(() => {
+  setRememberMe(rememberMe => !rememberMe);
+}, []);
 
     return (
         <ThemeProvider theme={theme}>
@@ -43,31 +71,33 @@ export function LoginForm() {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <Box component="form" onSubmit={handleSubmit}  sx={{ mt: 1 }}>
+            {loginMutation.isError && <Alert severity='error'>{"Error"}</Alert> }
+            <FormikProvider value={formik}>
+            <Box component="form" onSubmit={formik.handleSubmit}   sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
-                fullWidth
-                ref={emailRef}
+                fullWidth              
                 id="email"
-                label="Email Address"
+                label="email address"
                 name="email"
                 autoComplete="email"
                 autoFocus
+                onChange={formik.handleChange}
               />
               <TextField
                 margin="normal"
                 required
-                fullWidth
-                ref={passwordRef}
+                fullWidth              
                 name="password"
-                label="Password"
+                label="password"
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={formik.handleChange}
               />
               <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
+                control={<Checkbox checked={rememberMe} onChange={handleRememberMeChecked} value="remember" color="primary" />}
                 label="Remember me"
               />
               <Button
@@ -75,9 +105,8 @@ export function LoginForm() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                onClick={() => {handleSubmit}}
               >
-                Sign In
+              Sign in
               </Button>
               <Grid container>
                 <Grid item xs>
@@ -86,12 +115,13 @@ export function LoginForm() {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="/" variant="body2">
+                  <Link href="/home" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
               </Grid>
             </Box>
+            </FormikProvider>
           </Box>
         </Container>
       </ThemeProvider>

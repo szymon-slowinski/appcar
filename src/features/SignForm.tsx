@@ -1,4 +1,7 @@
-import { useState} from 'react'
+import { NavLink, useNavigate} from 'react-router-dom';
+import {useCreateUser }from '../hooks/useCreateUser';
+import { FormikProvider, useFormik } from "formik";
+import * as yup from "yup";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -9,36 +12,36 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/Auth';
-import { supabase } from '../db/Supabase';
+import { Alert } from '@mui/material';
+import { createPasswordValidation, emailValidation } from './common/validation';
+
 const theme = createTheme();
 
 export  function SignForm() {
-    const [email,setEmail] = useState("");
-    const [password,setPassword] = useState("");
-    const {setUser} = useAuth();
-    const navigate = useNavigate()
-    
-    const signUp =async (value:{email:string,password:string}) => {
-      const {user,error}=await supabase.auth.signUp({
-        email:value.email,
-        password:value.password
-      })
-      if(user){
-        setUser(user)
+  const navigate = useNavigate()
+  const createUserMutation = useCreateUser()
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+      name: "",
+      surname: "",
+    },
+    validationSchema: yup.object().shape({
+      email: emailValidation,
+      password: createPasswordValidation,
+      name: yup.string().required("Name is required"),
+      surname: yup.string().required("Surname is required"),
+    }),
+    onSubmit: values => {
+      createUserMutation.mutate(values);
+      if(createUserMutation.isSuccess){
         navigate('/')
-      }else if(error){
-        throw new Error(error.message)
-      }
+      } 
     }
-
-    async function handleSubmit(event:React.FormEvent<HTMLFormElement>) {
-        event.preventDefault()
-        /* eslint-disable-next-line*/
-        console.log("email",email,"password",password)
-        await signUp({email,password})
-    } 
+  });
+ 
+  
 
     return (
         <ThemeProvider theme={theme}>
@@ -58,43 +61,65 @@ export  function SignForm() {
             <Typography component="h1" variant="h5">
               Sign up
             </Typography>
-            <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
-              <TextField
+            {createUserMutation.isError && <Alert severity="error">{'Error'}</Alert>}
+            <FormikProvider value={formik}>
+            <Box component="form" onSubmit={formik.handleSubmit} sx={{ mt: 1 }}>
+            <TextField
                 margin="normal"
-                onChange={(e)=>{
-                  setEmail(e.target.value)
-                }}
-                value={email}
+                required
+                fullWidth
+                id="name"
+                label="Name"
+                name="name"
+                autoComplete="name"
+                onChange={formik.handleChange}
+                autoFocus
+                helperText={formik.touched.name && formik.errors.name}
+              />
+            <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="surname"
+                label="Surname"
+                name="surname"
+                autoComplete="surname"
+                autoFocus
+                onChange={formik.handleChange}
+                 helperText={formik.touched.surname && formik.errors.surname}
+              />
+              <TextField
+                margin="normal"                
                 required
                 fullWidth
                 id="email"
+                type='email'
                 label="Email Address"
                 name="email"
                 autoComplete="email"
                 autoFocus
+                onChange={formik.handleChange}
+                 helperText={formik.touched.email && formik.errors.email}
               />
               <TextField
                 margin="normal"
                 required
-                fullWidth
-                onChange={(e)=>{
-                  setPassword(e.target.value)
-                }}
-                value={password}
+                fullWidth                
                 name="password"
                 label="Password"
                 type="password"
                 id="password"
+                onChange={formik.handleChange}
                 autoComplete="current-password"
+                 helperText={formik.touched.password && formik.errors.password}
               />
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
-                onClick={()=>handleSubmit}
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign Up
+              Sign up
               </Button>
               <Grid container justifyContent={"flex-end"}>
                 <Grid item>
@@ -102,6 +127,7 @@ export  function SignForm() {
                 </Grid>
               </Grid>
             </Box>
+            </FormikProvider>
           </Box>
         </Container>
       </ThemeProvider>

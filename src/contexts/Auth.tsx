@@ -1,50 +1,52 @@
-import { User } from '@supabase/supabase-js';
-import  { useContext,useState, useEffect,createContext, Dispatch, SetStateAction } from 'react'
-import {supabase} from '../db/Supabase'
+
+import  { useContext,useState, useEffect,createContext} from 'react'
+import { getFromStorage, setToStorage } from '../features/utils/localStorage';
 
 interface AuthContextType{
-  user: User | null;
-  setUser: Dispatch<SetStateAction<User | null>>;
+ isLoggedIn: boolean;
+ setIsLoggedIn: (isLoggedIn: boolean) => void;
+ user: ({userId: string; email: string;})
+ setUser:({userId,email}: {userId: string; email: string;}) => void;
 }
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
  
-export function AuthProvider({children}:{children: React.ReactNode}){
-  const [user,setUser] = useState<  User | null>(null);
-  const [loading,setLoading] = useState(true);
+export const AuthProvider = ({children}:{children: React.ReactNode})=>{
+  const [user,setUser] = useState({userId: "",email: ""});
+  const [isLoggedIn,setIsLoggedIn] = useState(false);
   useEffect(()=>{
-    const session = supabase.auth.session()
-    setUser(session?.user ?? null)
-    setLoading(false)
-
-    const {data: listener} = supabase.auth.onAuthStateChange(
-      async(event,session) => {
-        setUser(session?.user ?? null)
-        setLoading(false)
-      }
-    )
-    return () => {
-      listener?.unsubscribe()
+    if(!isLoggedIn && user.userId === "" && user.email === ""){
+      const userId = getFromStorage<string>("userid") ?? ""
+      const email = getFromStorage<string>("email") ?? ""
+    setUser({userId,email})
+    if(userId && email){
+      setIsLoggedIn(true)
     }
-  },[])
+  }
+  setToStorage("userid",user.userId)
+  setToStorage("email",user.email)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+},[isLoggedIn])
 
  const value = {
    user,
-   setUser
+   setUser,
+   isLoggedIn,
+   setIsLoggedIn
  }
 
  return (
    <AuthContext.Provider value={value}>
-     {!loading && children}
+     {children}
    </AuthContext.Provider>
  )
 
 }
 
-export const useAuth = () => {
+export const useAuthContext = () => {
   const ctx = useContext(AuthContext);
 
   if (!ctx) {
-    throw new Error("Missing userContext, it's not wrapped in UserProvider");
+    throw new Error("Missing AuthContext, it's not wrapped in UserProvider");
   }
   return ctx;
 };

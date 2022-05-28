@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom"
-import { useAuth } from "../contexts/Auth"
 import LogoutIcon from '@mui/icons-material/Logout';
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -20,6 +19,9 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useState } from "react";
 import PrivateRoute from "./PrivateRoute";
+import {useUser} from "../hooks/useUser";
+import useLogOut from "../hooks/useLogOut";
+import { CircularProgress } from "@mui/material";
 
 const drawerWidth = 240;
 
@@ -75,17 +77,21 @@ const mdTheme = createTheme();
 
 
 export default function Dashboard() {
- const {user} = useAuth()
  const navigate = useNavigate()
  const [open, setOpen] = useState(true);
-  const toggleDrawer = () => {
+ const {data,isLoading} = useUser()
+ const logOutMutation = useLogOut()
+ 
+ if(logOutMutation.isSuccess){
+   navigate('/home')
+ }
+ 
+ const toggleDrawer = () => {
     setOpen(!open);
   };
  
 
- async function handleSignOut() {
-        navigate("/home")
-    }
+ 
 
       return (
     <PrivateRoute>
@@ -117,11 +123,11 @@ export default function Dashboard() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Welcome, {user?.id} to dashboard!
+             {isLoading ? <span><CircularProgress/></span> : data?.name} 
             </Typography>
             <IconButton 
             color="inherit"
-            onClick={() => {handleSignOut}}
+            onClick={() => logOutMutation.mutate()}
             >
                 <LogoutIcon />
             </IconButton>

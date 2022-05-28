@@ -1,14 +1,28 @@
-import { Navigate } from "react-router-dom"
-import { useAuth } from "../contexts/Auth"
-import React,{ReactNode} from "react"
+import { CircularProgress } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import {ReactNode} from "react"
+import {useUser} from "../hooks/useUser";
 
-export default  function PrivateRoute({children}:{children:ReactNode}) {
-    const {user} = useAuth()
-    /* eslint-disable-next-line*/
-    console.log("user in private", user)
+export default function PrivateRoute({children}:{children:ReactNode}){
+const navigate = useNavigate()
+const {isLoading,isError} = useUser()
+if(isLoading){
+  return (
+    <div>
+    <CircularProgress/>
+    </div>
+  )
+}
+if(isError){
+  navigate('/home')
+  return (
+    <div>
+    <CircularProgress/>
+    </div>
+  )
+}
 
-    if(!user){
-      return <Navigate to="/home" />
-    }
-  return <>{children}</>
+return (
+  <>{children}</>
+)
 }
