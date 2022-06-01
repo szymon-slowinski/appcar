@@ -13,6 +13,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({children}:{children: React.ReactNode})=>{
   const [user,setUser] = useState({userId: "",email: ""});
   const [isLoggedIn,setIsLoggedIn] = useState(false);
+  
   useEffect(()=>{
     if(!isLoggedIn && user.userId === "" && user.email === ""){
       const userId = getFromStorage<string>("userid") ?? ""

@@ -1,7 +1,11 @@
+import Navbar from "./Navbar";
 
 export default function About() {
   return (
-    <div>About application</div>
+    <div>
+      <Navbar/>
+      <h1>About Page</h1>
+      </div>
   )
 }
 

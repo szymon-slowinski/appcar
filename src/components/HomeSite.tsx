@@ -1,10 +1,12 @@
 import { Box } from "@mui/material";
+import Navbar from "./Navbar";
 import Signup from "./Signup";
 
 
 export default function HomeSite() {
   return (
     <div>
+      <Navbar/>
     <Box
     component="main"
     sx={{

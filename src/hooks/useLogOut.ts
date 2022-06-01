@@ -1,4 +1,5 @@
-import { useMutation,useQueryClient } from "react-query";
+import { useMutation} from "react-query";
+import {  useNavigate } from "react-router-dom";
 import { useAuthContext } from "../contexts/Auth";
 import { supabase } from "../db/Supabase";
 import { setToStorage } from "../features/utils/localStorage";
@@ -12,15 +13,15 @@ const logout = async () => {
 
 export default function useLogOut(){
     const {setUser,setIsLoggedIn} = useAuthContext()
-    const queryClient = useQueryClient()
-    return useMutation(()=> logout(),{
+    const navigate = useNavigate()
+    return useMutation(async ()=> logout(),{
         onSuccess:() => 
         {
             setToStorage("userid","");
             setToStorage("email","");
             setUser({userId: "", email:""});
             setIsLoggedIn(false);
-            queryClient.removeQueries();
+            navigate("/home")
         }
     })
 }

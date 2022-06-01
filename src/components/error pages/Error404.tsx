@@ -1,9 +1,12 @@
 
 import { Box, Container,Card,CardContent,Typography} from '@mui/material'
+import Navbar from '../Navbar'
 
 
  export default  function Error404() {
   return (
+    <>
+    <Navbar/>
     <Box
     component="main"
     sx={{
@@ -31,6 +34,7 @@ import { Box, Container,Card,CardContent,Typography} from '@mui/material'
     </Card>
     </Container>
   </Box>
+  </>
   )
 }
 

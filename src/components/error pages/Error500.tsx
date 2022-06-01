@@ -1,7 +1,10 @@
 import { Box, Container,Card,CardContent,Typography} from '@mui/material'
+import Navbar from '../Navbar'
 
 export default  function Error500() {
  return (
+   <>
+   <Navbar/>
   <Box
     component="main"
     sx={{
@@ -30,5 +33,6 @@ export default  function Error500() {
     </Card>
     </Container>
   </Box>
+  </>
  )
 }

@@ -1,9 +1,12 @@
 import { Box } from "@mui/material";
 import { LoginForm } from "../features/LoginForm";
+import Navbar from "./Navbar";
 
 
 export default  function Signin() {
   return (
+    <>
+    <Navbar/>
     <Box
     component="main"
     sx={{
@@ -17,5 +20,6 @@ export default  function Signin() {
     }}>
   <LoginForm/>
   </Box>
+  </>
   )
 }
