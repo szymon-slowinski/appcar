@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../contexts/Auth";
 import { supabase } from "../db/Supabase";
 import { setToStorage } from "../features/utils/localStorage";
+import { toast } from "react-toastify";
 
 export const  useLogin = ()=> {
 const navigate = useNavigate()
@@ -33,7 +34,7 @@ return useMutation(
             }
         },
         onError: (error: {message: string}) => {
-            throw new Error(error.message)
+            toast.error(error.message)
           }
     }
 )

@@ -16,6 +16,7 @@ const Footer = React.lazy(() => import ("./components/Footer"))
 const Page404 = React.lazy(()=> import ("./components/error pages/Error404") ) 
 const About = React.lazy(()=> import ('./components/About'))
 const Profile = React.lazy(() => import('./components/Profile'))
+const ForgotPassword = React.lazy(() => import('./components/ForgotPassword'))
 
 const Retry_Delay=1000;
 const Stale_Time = 60_000;
@@ -45,6 +46,7 @@ function App() {
         <Route path="/home"  element={<HomeSite/>} />
         <Route path='/login' element={<Signin/>}/>
         <Route path= '/about' element={<About/>}/>
+        <Route path='/forgot-password' element={<ForgotPassword/>}/>
         <Route path='*' element={<Page404/>}/>
       </Routes>
       </BrowserRouter>

@@ -1,5 +1,6 @@
 import { useMutation } from "react-query"
 import { useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
 import {supabase} from "../db/Supabase"
 import { User, CreateUser,NewUser } from "./types"
 
@@ -46,7 +47,7 @@ export const  useCreateUser = () => {
         navigate("/")
       },
       onError: (error: {message: string}) => {
-        throw new Error(error.message)
+        toast.error(error.message)
       }
     }
   )

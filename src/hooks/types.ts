@@ -14,3 +14,8 @@ export interface NewUser {
     name: string ;
     surname: string ;
 }
+
+export interface UserData {
+    name: string,
+    surname: string;
+}

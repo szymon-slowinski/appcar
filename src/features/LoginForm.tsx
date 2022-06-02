@@ -25,12 +25,11 @@ const [rememberedEmail,setRememberedEmail] = useState("")
 const [rememberMe, setRememberMe] = useState(false);
 
 useEffect(() => {
-  if(typeof window !== "undefined"){
     setRememberedEmail(localStorage.getItem("loginEmail")|| "")
     if(rememberedEmail){
       setRememberMe(true)
     }
-  }
+  
 },[rememberedEmail])
 
 const formik = useFormik({
@@ -110,7 +109,7 @@ const handleRememberMeChecked = useCallback(() => {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
+                  <Link href="/forgot-password" variant="body2">
                     Forgot password?
                   </Link>
                 </Grid>

@@ -1,11 +1,10 @@
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider, } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import AppBar from "./AppBar";
-import { Paper } from "@mui/material";
-
+import {UserProfileCard } from "./UserProfileCard";
 const mdTheme = createTheme();
 
 export const  Layout = () => {
@@ -26,7 +25,10 @@ export const  Layout = () => {
             overflow: "auto"
           }}
         >
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+          <Container maxWidth="lg" sx={{ 
+            mt: 4, 
+            mb: 4,
+            }}>
             <Grid container spacing={3}>
               
             </Grid>
@@ -36,6 +38,8 @@ export const  Layout = () => {
     </ThemeProvider>
     )
 }
+
+
 
 export const  LayoutUserProfile = () => {
   return(
@@ -55,41 +59,9 @@ export const  LayoutUserProfile = () => {
           overflow: "auto"
         }}
       >
-        <Container maxWidth="lg" sx={{ mt: 10, mb: 4 }}>
-          <Grid container spacing={3}>
-          <Grid item xs={12} md={8} lg={9}>
-          <Paper elevation={3}
-          sx={{
-            p: 2,
-            display: 'flex',
-            flexDirection: 'column',
-            height: 240,
-          }}> 
-          {'THERE WILL BE USER DETAILS'}
-          </Paper>
-          </Grid>
-          <Grid item xs={12} md={8} lg={9}>
-          <Paper elevation={3}
-          sx={{
-            p: 2,
-            display: 'flex',
-            flexDirection: 'column',
-            height: 240,
-          }}> 
-          {'THERE WILL BE USER DETAILS'}
-          </Paper>
-          </Grid>
-          <Grid item xs={12} md={8} lg={9}>
-          <Paper elevation={3}
-          sx={{
-            p: 2,
-            display: 'flex',
-            flexDirection: 'column',
-            height: 240,
-          }}> 
-          {'THERE WILL BE USER DETAILS'}
-          </Paper>
-          </Grid>
+        <Container maxWidth="lg" sx={{ mt: 12, mb: 4 }}>
+          <Grid  container spacing={3}>
+          <UserProfileCard/>
           </Grid>
         </Container>
       </Box>

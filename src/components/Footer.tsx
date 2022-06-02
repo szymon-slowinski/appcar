@@ -20,6 +20,7 @@ export default function Footer() {
     <Box
       sx={{
         display: "flex",
+        flexDirection: 'row',
         justifyItems: "center",
         justifyContent: "center"
       }}
@@ -38,7 +39,11 @@ export default function Footer() {
               : theme.palette.grey[900]
         }}
       >
-        <Container maxWidth="sm">
+        <Container sx={{
+          display: 'flex',
+          justifyItems: 'center',
+          justifyContent: 'center'
+        }} maxWidth="sm">
           <Copyright />
         </Container>
       </Box>

@@ -77,7 +77,8 @@ export default function AppBar(){
         <ApplicationBar position="absolute" open={open}>
           <Toolbar
             sx={{
-              pr: "24px" 
+              pr: "24px" ,
+              
             }}
           >
             <IconButton
