@@ -3,7 +3,7 @@ import { Avatar, Card,Badge} from "@mui/material";
 import { createTheme, ThemeProvider, } from "@mui/material/styles";
 import { useFormik,FormikProvider } from "formik";
 import { useUser } from "../hooks/useUser";
-import {validationPersonalDataSchema} from "./common/validation"
+import {emailValidation, validationPersonalDataSchema} from "./common/validation"
 import {useUpdateUserNameAndSurname} from '../hooks/useUpdateUserNameAndSurname'
 import {useUpdateEmail} from '../hooks/useUpdateEmail'
 const mdTheme = createTheme();
@@ -63,7 +63,7 @@ export const UserProfileCard = () => {
       initialValues: {
         email: email
       },
-      validationSchema: validationPersonalDataSchema,
+      validationSchema: emailValidation,
       onSubmit: ({ email }) => {
         if (email) {
           updateEmail.mutate(email);

@@ -24,7 +24,6 @@ export const passwordValidation = yup
   .required(`Password ${isRequired}`);
 
 export const validationPersonalDataSchema = yup.object().shape({
-  email: emailValidation,
   name: yup.string().required(`Name ${isRequired}`),
   surname: yup.string().required(`Surname ${isRequired}`)
 })

@@ -11,30 +11,38 @@ import { Link } from '@mui/material';
 
 export const mainListItems = (
   <React.Fragment>
+    <Link href='/'>
     <ListItemButton>
       <ListItemIcon>
-          <Link href='/'><DashboardIcon/></Link> 
+          <DashboardIcon/>
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItemButton>
+    </Link> 
+    <Link href='/profile'>
     <ListItemButton>
       <ListItemIcon>
-        <Link href='/profile'><AccountCircleRounded/></Link>
+        <AccountCircleRounded/>
       </ListItemIcon>
       <ListItemText primary="Profile" />
     </ListItemButton>
+    </Link>
+    <Link href='#'>
     <ListItemButton>
       <ListItemIcon>
         <EventNoteRoundedIcon/>
       </ListItemIcon>
       <ListItemText primary="Reservation" />
     </ListItemButton>
+    </Link>
+    <Link href='/calendar'>
     <ListItemButton>
       <ListItemIcon>
         <CalendarMonthRoundedIcon/>
       </ListItemIcon>
       <ListItemText primary="Calendar" />
     </ListItemButton>
+    </Link>
     <ListItemButton>
       <ListItemIcon>
         <DirectionsCarFilledRoundedIcon/>
