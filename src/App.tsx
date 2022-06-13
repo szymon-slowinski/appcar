@@ -9,6 +9,7 @@ import {
 import { ReactQueryDevtools } from 'react-query/devtools'
 import ErrorBoundary from './components/ErrorBoundary';
 import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css"
 
 const HomeSite=React.lazy(()=> import('./components/HomeSite'));
 const Signin = React.lazy(() => import ('./components/Signin'))
@@ -19,6 +20,8 @@ const About = React.lazy(()=> import ('./components/About'))
 const Profile = React.lazy(() => import('./components/Profile'))
 const ForgotPassword = React.lazy(() => import('./components/ForgotPassword'))
 const Calendar = React.lazy(() => import('./components/Calendar'))
+const Cars = React.lazy(() => import('./components/Cars'))
+const ForgotPasswordForm = React.lazy(() => import('./components/ForgotPasswordForm'))
 
 const Retry_Delay=1000;
 const Stale_Time = 60_000;
@@ -42,11 +45,9 @@ function App() {
     <Suspense fallback={<p>Loading...</p>}>
       <AuthProvider>
         <ToastContainer position="top-center"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
+            limit={3}
+            autoClose={3000}
             closeOnClick
-            rtl={false}
             pauseOnFocusLoss
             draggable
             pauseOnHover />
@@ -55,10 +56,12 @@ function App() {
         <Route path='/' element={<Dashboard/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/calendar' element={<Calendar/>}/>
+        <Route path ='/cars'  element={<Cars/>}/>
         <Route path="/home"  element={<HomeSite/>} />
         <Route path='/login' element={<Signin/>}/>
         <Route path= '/about' element={<About/>}/>
         <Route path='/forgot-password' element={<ForgotPassword/>}/>
+        <Route path='/reset-password'element={<ForgotPasswordForm/>}/>
         <Route path='*' element={<Page404/>}/>
       </Routes>
       </BrowserRouter>

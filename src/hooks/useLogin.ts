@@ -33,7 +33,7 @@ return useMutation(
                 navigate("/")
             }
         },
-        onError: (error: {message: string}) => {
+        onError: (error:Error) => {
             toast.error(error.message)
           }
     }

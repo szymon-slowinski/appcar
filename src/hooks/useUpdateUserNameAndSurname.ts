@@ -27,8 +27,8 @@ export const useUpdateUserNameAndSurname = () => {
             toast.success("User updated")
             queryClient.invalidateQueries(["user"])
         },
-        onError: (error: {message: string}) => {
+        onError: (error:Error) => {
             toast.error(error.message)
-        }
+          }
     })
 }

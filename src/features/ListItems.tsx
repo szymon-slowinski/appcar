@@ -43,11 +43,13 @@ export const mainListItems = (
       <ListItemText primary="Calendar" />
     </ListItemButton>
     </Link>
+    <Link href='/cars'>
     <ListItemButton>
       <ListItemIcon>
         <DirectionsCarFilledRoundedIcon/>
       </ListItemIcon>
       <ListItemText primary="Cars" />
     </ListItemButton>
+    </Link>
   </React.Fragment>
 );

@@ -1,5 +1,6 @@
 import { useMutation} from "react-query";
 import {  useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useAuthContext } from "../contexts/Auth";
 import { supabase } from "../db/Supabase";
 import { setToStorage } from "../features/utils/localStorage";
@@ -22,6 +23,9 @@ export default function useLogOut(){
             setUser({userId: "", email:""});
             setIsLoggedIn(false);
             navigate("/home")
-        }
+        },
+        onError: (error:Error) => {
+            toast.error(error.message)
+          }
     })
 }

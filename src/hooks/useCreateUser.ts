@@ -46,7 +46,7 @@ export const  useCreateUser = () => {
       onSuccess: () => {
         navigate("/")
       },
-      onError: (error: {message: string}) => {
+      onError: (error:Error) => {
         toast.error(error.message)
       }
     }

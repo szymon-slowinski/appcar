@@ -12,7 +12,6 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Alert } from '@mui/material';
 import { createPasswordValidation, emailValidation } from './common/validation';
 
 const theme = createTheme();
@@ -61,7 +60,6 @@ export  function SignForm() {
             <Typography component="h1" variant="h5">
               Sign up
             </Typography>
-            {createUserMutation.isError && <Alert severity="error">{'Error'}</Alert>}
             <FormikProvider value={formik}>
             <Box component="form" onSubmit={formik.handleSubmit} sx={{ mt: 1 }}>
             <TextField

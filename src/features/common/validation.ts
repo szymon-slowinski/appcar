@@ -27,3 +27,18 @@ export const validationPersonalDataSchema = yup.object().shape({
   name: yup.string().required(`Name ${isRequired}`),
   surname: yup.string().required(`Surname ${isRequired}`)
 })
+
+export const CarAddValidation = yup.object().shape({
+    make: yup.string().required(`Make ${isRequired}`),
+    model:yup.string().required(`Model ${isRequired}`),
+    production_year:yup.string().required(`Year production ${isRequired}`),
+    registration_number:yup.string().required(`Registration number ${isRequired}`),
+    vehicle_mileage:yup.number().required(`Vehicle mileage ${isRequired}`),
+    damage_history:yup.string().required(`Damage history ${isRequired}`),
+    car_review:yup.string().required(`Year production ${isRequired}`)
+}) 
+
+export const repeatPasswordSchema = yup.object().shape({
+  password: createPasswordValidation,
+  passwordConf: yup.string().oneOf([yup.ref("password"),null], "Password must be the same")
+});

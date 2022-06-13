@@ -17,9 +17,9 @@ export const useUpdateEmail = () => {
             onSuccess: () => {
                 toast.success("We sent you an email confirmation for change email")
             },
-            onError: () => {
-                toast.error(`Can't update email`)
-            }
+            onError: (error:Error) => {
+                toast.error(error.message)
+              }
         }
     )
 }

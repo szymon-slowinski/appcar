@@ -11,7 +11,7 @@ const navigate = useNavigate()
 const {isLoading,isError,data,setIsLoggedIn} = useUser()
 useEffect(()=> {
  if((!isLoading && !data) || isError){
-   navigate('/')
+   navigate('/login')
  }else if (!isLoading && adminRestrictions && data?.usertype !=="admin"){
    setIsLoggedIn(false)
    navigate('/login')

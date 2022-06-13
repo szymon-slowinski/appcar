@@ -30,7 +30,9 @@ export default function ForgotPassword (){
     return (
         <ThemeProvider theme={theme}>
             <Navbar/>
-            <Container  component="main" maxWidth="xs">
+            <Container  component="main" sx={{
+              height:"74vh"
+            }} maxWidth="xs">
             <CssBaseline/>
           <Box
             sx={{

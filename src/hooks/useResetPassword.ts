@@ -15,8 +15,8 @@ export const useResetPassword = () => {
         onSuccess: () => {
             toast.success("We send you an email confirmation")
         },
-        onError: (error: {message: string}) => {
+        onError: (error:Error) => {
             toast.error(error.message)
-        }
+          }
     })
 } 
