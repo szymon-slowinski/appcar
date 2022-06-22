@@ -1,7 +1,6 @@
 export function getFromStorage<T>(key: string): T | undefined {
         const value = window.localStorage.getItem(key)
         return value ?? JSON.parse(value || "{}")
-        // ?? null coalescing
 }
 
 export const setToStorage = (key: string,value: string | object) => {

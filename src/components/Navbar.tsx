@@ -15,7 +15,7 @@ export default function Navbar() {
             HiCar
           </Typography>
           <Stack direction="row" spacing={2}>
-          <Button href='/home' color="inherit">Home</Button>
+          <Button href='/' color="inherit">Home</Button>
           <Button href='/login' color="inherit">Login</Button>
           <Button href='/about' color="inherit">About</Button>
           </Stack>

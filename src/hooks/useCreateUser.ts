@@ -1,5 +1,5 @@
 import { useMutation } from "react-query"
-import { useNavigate } from "react-router-dom"
+import { useHistory} from "react-router-dom"
 import { toast } from "react-toastify"
 import {supabase} from "../db/Supabase"
 import { User, CreateUser,NewUser } from "./types"
@@ -31,7 +31,7 @@ if(error){
 
 
 export const  useCreateUser = () => {
-  const navigate = useNavigate()
+  const history = useHistory()
   return useMutation(
     async (user: CreateUser) => {
       const createdUser = await createUser(user);
@@ -44,7 +44,7 @@ export const  useCreateUser = () => {
       }
     },{
       onSuccess: () => {
-        navigate("/")
+        history.push("/dashboard")
       },
       onError: (error:Error) => {
         toast.error(error.message)

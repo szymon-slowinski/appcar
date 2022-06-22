@@ -1,4 +1,4 @@
-import { NavLink, useNavigate} from 'react-router-dom';
+import { NavLink, useHistory} from 'react-router-dom';
 import {useCreateUser }from '../hooks/useCreateUser';
 import { FormikProvider, useFormik } from "formik";
 import * as yup from "yup";
@@ -17,7 +17,7 @@ import { createPasswordValidation, emailValidation } from './common/validation';
 const theme = createTheme();
 
 export  function SignForm() {
-  const navigate = useNavigate()
+  const history = useHistory()
   const createUserMutation = useCreateUser()
   const formik = useFormik({
     initialValues: {
@@ -35,7 +35,7 @@ export  function SignForm() {
     onSubmit: values => {
       createUserMutation.mutate(values);
       if(createUserMutation.isSuccess){
-        navigate('/')
+        history.push('/dashboard')
       } 
     }
   });

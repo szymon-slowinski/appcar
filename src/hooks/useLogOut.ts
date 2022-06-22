@@ -1,5 +1,5 @@
 import { useMutation} from "react-query";
-import {  useNavigate } from "react-router-dom";
+import {  useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuthContext } from "../contexts/Auth";
 import { supabase } from "../db/Supabase";
@@ -14,7 +14,7 @@ const logout = async () => {
 
 export default function useLogOut(){
     const {setUser,setIsLoggedIn} = useAuthContext()
-    const navigate = useNavigate()
+    const history = useHistory()
     return useMutation(async ()=> logout(),{
         onSuccess:() => 
         {
@@ -22,7 +22,7 @@ export default function useLogOut(){
             setToStorage("email","");
             setUser({userId: "", email:""});
             setIsLoggedIn(false);
-            navigate("/home")
+            history.push("/")
         },
         onError: (error:Error) => {
             toast.error(error.message)

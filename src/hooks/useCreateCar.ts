@@ -1,5 +1,5 @@
 import { useMutation } from 'react-query';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { supabase } from '../db/Supabase';
 import { CarProperties, CreateCar } from './types';
@@ -23,7 +23,7 @@ const insertCarData = async ({make,model,production_year,registration_number,
     }
 
 export const useCreateCar = () => {
-    const navigate = useNavigate()
+  const history = useHistory()
     
     return useMutation(
         async(values: CreateCar) => {
@@ -38,7 +38,7 @@ export const useCreateCar = () => {
         {
           onSuccess: () => {
             toast.success("You added a car")
-            navigate('/cars')
+            history.push('/cars')
           },
           onError: (error:Error) => {
             toast.error(error.message)

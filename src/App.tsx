@@ -1,5 +1,5 @@
 import React, {Suspense} from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Switch,BrowserRouter } from 'react-router-dom';
 import './App.css';
 import { AuthProvider} from './contexts/Auth';
 import {
@@ -51,19 +51,39 @@ function App() {
             pauseOnFocusLoss
             draggable
             pauseOnHover />
-      <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Dashboard/>}/>
-        <Route path='/profile' element={<Profile/>}/>
-        <Route path='/calendar' element={<Calendar/>}/>
-        <Route path ='/cars'  element={<Cars/>}/>
-        <Route path="/home"  element={<HomeSite/>} />
-        <Route path='/login' element={<Signin/>}/>
-        <Route path= '/about' element={<About/>}/>
-        <Route path='/forgot-password' element={<ForgotPassword/>}/>
-        <Route path='/reset-password'element={<ForgotPasswordForm/>}/>
-        <Route path='*' element={<Page404/>}/>
-      </Routes>
+            <BrowserRouter>
+      <Switch>
+       <Route exact path="/">
+        <HomeSite/>
+       </Route>
+        <Route path='/dashboard'>
+          <Dashboard/>
+        </Route>
+        <Route path='/profile'>
+          <Profile/>
+        </Route>
+        <Route path='/calendar'>
+          <Calendar/>
+        </Route>
+        <Route path ='/cars'>
+          <Cars/>
+        </Route>
+        <Route path='/login'>
+          <Signin/>
+        </Route>
+        <Route path= '/about'>
+          <About/>
+        </Route>
+        <Route path='/forgot-password'>
+          <ForgotPassword/>
+        </Route>
+        <Route path='/reset-password'>
+          <ForgotPasswordForm/>
+        </Route>
+        <Route path='*'>
+          <Page404/>
+        </Route>
+      </Switch>
       </BrowserRouter>
       </AuthProvider>
       <Footer/>

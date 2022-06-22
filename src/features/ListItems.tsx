@@ -11,7 +11,7 @@ import { Link } from '@mui/material';
 
 export const mainListItems = (
   <React.Fragment>
-    <Link href='/'>
+    <Link href='/dashboard'>
     <ListItemButton>
       <ListItemIcon>
           <DashboardIcon/>

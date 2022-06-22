@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useCreateCar } from '../hooks/useCreateCar';
 import { CarAddValidation } from './common/validation';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { useNavigate } from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 
 const style = {
 position: 'absolute',
@@ -31,7 +31,7 @@ export const AddCardModal = () => {
     const [open,setOpen] = useState(false)
     const [currentDate]=useState(new Date())
     const [dateReview] = useState(new Date())
-    const navigate = useNavigate()
+    const history = useHistory()
     const handleClose = () => {
         formik.handleSubmit()
         if(formik.isValid){
@@ -71,7 +71,7 @@ export const AddCardModal = () => {
               car_review: values.car_review.toISOString().split("T")[0]
 
             })
-            navigate("/")
+            history.push("/dashboard")
         }
       });
     

@@ -7,6 +7,8 @@ const resetPassword = async (email: string) => {
     if(error){
         throw error;
     }
+     /* eslint-disable */
+    console.log(data)
     return data
 }
 

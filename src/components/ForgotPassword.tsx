@@ -6,12 +6,12 @@ import { FormikProvider, useFormik } from "formik";
 import { useResetPassword } from "../hooks/useResetPassword";
 import * as yup from "yup";
 import { emailValidation } from "../features/common/validation";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const theme = createTheme()
 
 export default function ForgotPassword (){
-    const navigate = useNavigate()
+    const history = useHistory()
     const resetPassword = useResetPassword()
     const formik = useFormik({
         initialValues: { email: "" },
@@ -22,7 +22,7 @@ export default function ForgotPassword (){
         onSubmit: ({ email }) => {
           if (typeof email === "string") {
             resetPassword.mutate(email);
-            navigate('/login')
+            history.push('/login')
           }
         }
       });
