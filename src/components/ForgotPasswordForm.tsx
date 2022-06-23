@@ -3,14 +3,17 @@ import { createTheme,ThemeProvider } from "@mui/material/styles";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Navbar from "./Navbar";
 import { FormikProvider, useFormik } from "formik";
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
 import { useResetPasswordConfirmation } from "../hooks/useResetPasswordConfirmation";
 import { repeatPasswordSchema } from "../features/common/validation";
+import { useHistory ,useLocation } from "react-router-dom";
 
 const theme = createTheme()
 
-export default function ForgotPasswordForm () {
-    const [authToken]=useState("")
+export default function ForgotPasswordForm () { 
+  const location = useLocation()
+    const history = useHistory()
+    const [authToken,setAuthToken]=useState("")
     const resetPasswordMutation = useResetPasswordConfirmation();
     const formik = useFormik({
         initialValues: { password: "",passwordConfirmation:"" },
@@ -23,6 +26,17 @@ export default function ForgotPasswordForm () {
          })
         }
       });
+
+      useEffect(() => {
+        const token = location.search
+        const urlToken = token.split("=")[1]
+        if(urlToken && typeof urlToken === "string"){
+          setAuthToken(urlToken)
+        }else{
+          history.push("/")
+        }
+        /*eslint-disable */
+      },[])
 
 
     return(

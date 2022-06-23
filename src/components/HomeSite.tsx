@@ -1,27 +1,25 @@
 import { Box } from "@mui/material";
 import { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import Signup from "./Signup";
 
 
 export default function HomeSite() {
   const history = useHistory()
-
+  const location = useLocation()
+  
   useEffect(() => { 
-    const queryData = history.location.pathname.split("&") 
-    /*eslint-disable */
-    console.log(queryData)
+    const queryData = location.hash.split("&")
     if (queryData.includes("type=recovery")) {
-      /*eslint-disable */
-      console.log("jestesmy w if type=recovery")
+      const token = queryData[0].split("=")[1]
       history.push({
         pathname: "/reset-password",
-        search: `?authToken${queryData[0].split("=")[0]}`
+        search: `?authToken=${token}`
       });
     }
     /*eslint-disable */
-  }, []);
+  }, [location]);
 
   return (
     <div>

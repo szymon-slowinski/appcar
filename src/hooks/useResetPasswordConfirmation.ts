@@ -15,6 +15,7 @@ const resetPassword = async (authToken: string, password: string) => {
 
 export const useResetPasswordConfirmation = () => {
     const history = useHistory()
+
     return useMutation(
         ({authToken,password}: {authToken: string,password:string}) => 
         resetPassword(authToken,password),
