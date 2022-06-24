@@ -7,6 +7,8 @@ import AppBar from "./AppBar";
 import {UserProfileCard } from "./UserProfileCard";
 import { CalendarCard } from "./CalendarCard";
 import { CarCard } from "./CarCard";
+import { Paper } from "@mui/material";
+import { CarsTable } from "./CarsTable";
 
 const mdTheme = createTheme();
 
@@ -31,9 +33,14 @@ export const  Layout = () => {
           <Container maxWidth="lg" sx={{ 
             mt: 4, 
             mb: 4,
+            pt:6,
             }}>
             <Grid container spacing={3}>
-              
+              <Grid item xs={12}>
+                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                <CarsTable/>
+                </Paper>
+              </Grid>
             </Grid>
           </Container>
         </Box>

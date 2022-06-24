@@ -100,7 +100,7 @@ export default function AppBar(){
               noWrap
               sx={{ flexGrow: 1 }}
             >
-            {`user: ` + data?.name}
+            {`Welcome, ` + data?.name}
             </Typography>
             <IconButton 
             color="inherit"

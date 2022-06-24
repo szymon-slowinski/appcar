@@ -22,6 +22,8 @@ const ForgotPassword = React.lazy(() => import('./components/ForgotPassword'))
 const Calendar = React.lazy(() => import('./components/Calendar'))
 const Cars = React.lazy(() => import('./components/Cars'))
 const ForgotPasswordForm = React.lazy(() => import('./components/ForgotPasswordForm'))
+const SingleCarPage = React.lazy(()=> import('./components/SingleCarPage'))
+
 
 const Retry_Delay=1000;
 const Stale_Time = 60_000;
@@ -41,6 +43,7 @@ defaultOptions:{
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
       <ErrorBoundary>
     <Suspense fallback={<p>Loading...</p>}>
       <AuthProvider>
@@ -50,8 +53,7 @@ function App() {
             closeOnClick
             pauseOnFocusLoss
             draggable
-            pauseOnHover />
-            <BrowserRouter>
+            pauseOnHover/>  
       <Switch>
        <Route exact path="/">
         <HomeSite/>
@@ -67,6 +69,9 @@ function App() {
         </Route>
         <Route path ='/cars'>
           <Cars/>
+        </Route>
+        <Route  path='/cars/:id'>
+          <SingleCarPage/>
         </Route>
         <Route path='/login'>
           <Signin/>
@@ -84,11 +89,11 @@ function App() {
           <Page404/>
         </Route>
       </Switch>
-      </BrowserRouter>
       </AuthProvider>
       <Footer/>
     </Suspense>
       </ErrorBoundary>
+      </BrowserRouter>
     <ReactQueryDevtools initialIsOpen={false}/>
     </QueryClientProvider>
   );

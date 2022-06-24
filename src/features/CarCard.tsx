@@ -1,10 +1,10 @@
-import { AddCardModal } from "./AddCarModal"
+import { CarList } from "./CarList"
+
 
 export const CarCard = () => {
-    
     return (
-        <div>CarCard - component
-            <AddCardModal/>
+        <div>
+            <CarList/>
         </div>
     )
 }

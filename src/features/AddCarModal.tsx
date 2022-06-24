@@ -63,8 +63,6 @@ export const AddCardModal = () => {
         enableReinitialize: true,
         validationSchema:CarAddValidation,
         onSubmit: values => {
-         /* eslint-disable */
-          console.log("date",values.production_year.toISOString().split("T")[0])
           createCarMutation.mutate({
               ...values,
               production_year: values.production_year.toISOString().split("T")[0],
