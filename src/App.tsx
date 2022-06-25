@@ -67,11 +67,11 @@ function App() {
         <Route path='/calendar'>
           <Calendar/>
         </Route>
-        <Route path ='/cars'>
+        <Route exact path ='/cars'>
           <Cars/>
         </Route>
         <Route  path='/cars/:id'>
-          <SingleCarPage/>
+        <SingleCarPage/>
         </Route>
         <Route path='/login'>
           <Signin/>

@@ -9,7 +9,7 @@ import { Link } from "react-router-dom"
 const theme = createTheme()
 
 export const CarList = () => {
-    const {data} = useCars()
+    const {data: cars} = useCars()
     
     return(
         <ThemeProvider theme={theme}>
@@ -31,7 +31,7 @@ export const CarList = () => {
             </Box>
             <Container sx={{ py: 8 }} maxWidth="lg">
             <Grid container spacing={4}>
-            {data?.map((car) => (
+            {cars?.map((car) => (
                 <Grid item key={car.car_id} xs={12} sm={6} md={4}>
                     <Card 
                     sx={{ height:'100%',
@@ -66,11 +66,11 @@ export const CarList = () => {
                         </Typography>
                        </CardContent>
                        <CardActions disableSpacing>
+                       <Link to={`/cars/${car.car_id}`}>
                         <IconButton aria-label="More details">
-                            <Link to={{pathname: `/cars/${car.car_id}`}}>
-                            <ReadMore/>
-                            </Link>
-                        </IconButton>
+                         <ReadMore/>
+                         </IconButton>
+                         </Link>
                         <IconButton aria-label="Edit">
                         <Edit/>
                         </IconButton>

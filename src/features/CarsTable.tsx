@@ -1,12 +1,11 @@
-import { DataGrid } from "@mui/x-data-grid"
-import { useEffect, useState } from "react"
+import { DataGrid} from "@mui/x-data-grid"
 import { Link} from "react-router-dom"
 import { useCars } from "../hooks/useCars"
 
 export const CarsTable = () => {
     const columns =[
         {
-          field:'id', headerName:'ID',width:200
+          field:'car_id', headerName:'ID',width:200
         },
         {
           field: 'make',
@@ -34,7 +33,7 @@ export const CarsTable = () => {
           },
           {
             field: 'vehicle_mileage',
-            headerName: 'Vegicle Mileage',
+            headerName: 'Vehicle Mileage',
             width: 200,
             editable: true,
           },
@@ -53,28 +52,24 @@ export const CarsTable = () => {
         {
           field: "actions",
           headerName: "Action",
-          renderCell: () =>
-               <div>
-               <Link to={{pathname: `/cars/`, state:''}}>Edit</Link>
+          /*eslint-disable */
+          renderCell: (row:any):JSX.Element =>{
+            return  <div>
+               <Link to={{pathname: `/cars/${row.car_id}/edit`, state:''}}>Edit</Link>
                 </div>
-          
+          }
         }
       ]
-
-      useEffect(()=> {
-        setRowData(data)
-      },[])
-
-      const [rowData,setRowData] = useState([])
-      const {data}= useCars()
+     const {isLoading, data}= useCars()
     return (
         <div>
-            <DataGrid 
-            autoHeight
-            pageSize={5}
-            columns={columns}
-            rows={rowData}
-            />
+           <DataGrid
+           autoHeight
+           loading={isLoading}
+           columns={columns}
+           rows={data}
+           getRowId={(row)=>row.car_id}
+           />
         </div>
     )
 }

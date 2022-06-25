@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 import { supabase } from "../db/Supabase"
 
-interface Cars {
+export interface Cars {
     car_id: string,
     make: string,
     model: string,
@@ -31,6 +31,6 @@ export const useCars = () => {
     )
 return {
     ...query,
-    data: query.data?.cars
+    data: query.data?.cars || []
 }
 }
