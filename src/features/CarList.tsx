@@ -5,6 +5,7 @@ import bmw from "../assets/img/bmw.jpg"
 import { blue } from "@mui/material/colors"
 import { DeleteForever, Edit, ReadMore } from "@mui/icons-material"
 import { Link } from "react-router-dom"
+import Footer from "../components/Footer"
 
 const theme = createTheme()
 
@@ -84,6 +85,7 @@ export const CarList = () => {
             ))}
             </Grid>
             </Container>
+            <Footer/>
         </ThemeProvider>
     )
 }

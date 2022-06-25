@@ -9,6 +9,8 @@ import { CalendarCard } from "./CalendarCard";
 import { CarCard } from "./CarCard";
 import { Paper } from "@mui/material";
 import { CarsTable } from "./CarsTable";
+import Footer from "../components/Footer";
+import { CarDetails } from "./CarDetails";
 
 const mdTheme = createTheme();
 
@@ -43,6 +45,7 @@ export const  Layout = () => {
               </Grid>
             </Grid>
           </Container>
+          <Footer/>
         </Box>
       </Box>
     </ThemeProvider>
@@ -74,6 +77,7 @@ export const  LayoutUserProfile = () => {
           <UserProfileCard/>
           </Grid>
         </Container>
+        <Footer/>
       </Box>
     </Box>
   </ThemeProvider>
@@ -102,6 +106,7 @@ export const  CalendarLayout = () => {
          sx={{ mt: 12, mb: 4, width: "100%", height:"50vh" }}>
           <CalendarCard/>
         </Container>
+        <Footer/>
       </Box>
     </Box>
   </ThemeProvider>
@@ -130,6 +135,35 @@ export const  CarLayout = () => {
          sx={{ mt: 12, mb: 4, width: "100%", height:"50vh" }}>
           <CarCard/>
         </Container>
+      </Box>
+    </Box>
+  </ThemeProvider>
+  )
+}
+
+export const  SingleCarLayout = () => {
+  return(
+      <ThemeProvider theme={mdTheme}>
+    <Box sx={{ display: "flex" }}>
+      <CssBaseline />
+      <AppBar/>
+      <Box
+        component="main"
+        sx={{
+          backgroundColor: (theme) =>
+            theme.palette.mode === "light"
+              ? theme.palette.grey[100]
+              : theme.palette.grey[900],
+          flexGrow: 1,
+          height: "100vh",
+          overflow: "auto"
+        }}
+      >
+        <Container 
+         sx={{ mt: 12, mb: 4, width: "100%", height:"50vh" }}>
+          <CarDetails/>
+        </Container>
+        <Footer/>
       </Box>
     </Box>
   </ThemeProvider>

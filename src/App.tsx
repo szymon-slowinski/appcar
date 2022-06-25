@@ -14,7 +14,6 @@ import "react-toastify/dist/ReactToastify.css"
 const HomeSite=React.lazy(()=> import('./components/HomeSite'));
 const Signin = React.lazy(() => import ('./components/Signin'))
 const Dashboard = React.lazy(() => import ('./components/Dashboard'))
-const Footer = React.lazy(() => import ("./components/Footer"))
 const Page404 = React.lazy(()=> import ("./components/error pages/Error404") ) 
 const About = React.lazy(()=> import ('./components/About'))
 const Profile = React.lazy(() => import('./components/Profile'))
@@ -90,7 +89,6 @@ function App() {
         </Route>
       </Switch>
       </AuthProvider>
-      <Footer/>
     </Suspense>
       </ErrorBoundary>
       </BrowserRouter>
