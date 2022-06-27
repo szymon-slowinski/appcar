@@ -15,14 +15,14 @@ export const CarList = () => {
     return(
         <ThemeProvider theme={theme}>
             <Box sx={{
-            pt: 8,
+            pt: 6,
             pb: 6,
           }}>
             <Container maxWidth="sm">
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
               There are all your cars. You can manage all of them.
             </Typography>
-            <Stack sx={{ pt: 4 }}
+            <Stack sx={{ pt: 1 }}
               direction="row"
               spacing={2}
               justifyContent="center">
@@ -30,7 +30,7 @@ export const CarList = () => {
             </Stack>
             </Container>
             </Box>
-            <Container sx={{ py: 8 }} maxWidth="lg">
+            <Container sx={{ py:0.5}} maxWidth="lg">
             <Grid container spacing={4}>
             {cars?.map((car) => (
                 <Grid item key={car.car_id} xs={12} sm={6} md={4}>

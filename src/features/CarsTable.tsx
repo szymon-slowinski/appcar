@@ -11,43 +11,43 @@ export const CarsTable = () => {
           field: 'make',
           headerName: 'Make',
           width: 200,
-          editable: true,
+          editable: false,
         },
         {
           field: 'model',
           headerName: 'Model',
           width: 200,
-          editable: true,
+          editable: false,
         },
         {
           field: 'production_year',
           headerName: 'Production Year',
           width: 200,
-          editable: true,
+          editable: false,
         },
         {
             field: 'registration_number',
             headerName: 'Registration Number',
             width: 200,
-            editable: true,
+            editable: false,
           },
           {
             field: 'vehicle_mileage',
             headerName: 'Vehicle Mileage',
             width: 200,
-            editable: true,
+            editable: false,
           },
           {
             field: 'damage_history',
             headerName: 'Damage History',
             width: 200,
-            editable: true,
+            editable: false,
           },
           {
             field: 'car_review',
             headerName: 'Car Review',
             width: 200,
-            editable: true,
+            editable: false,
           },
         {
           field: "actions",
@@ -55,7 +55,7 @@ export const CarsTable = () => {
           /*eslint-disable */
           renderCell: (row:any):JSX.Element =>{
             return  <div>
-               <Link to={{pathname: `/cars/${row.car_id}/edit`, state:''}}>Edit</Link>
+               <Link to={{pathname: `/cars/${row.id}/edit`}}>Edit</Link>
                 </div>
           }
         }

@@ -22,7 +22,7 @@ const Calendar = React.lazy(() => import('./components/Calendar'))
 const Cars = React.lazy(() => import('./components/Cars'))
 const ForgotPasswordForm = React.lazy(() => import('./components/ForgotPasswordForm'))
 const SingleCarPage = React.lazy(()=> import('./components/SingleCarPage'))
-
+const EditCarPage = React.lazy(()=> import('./components/EditCarPage'))
 
 const Retry_Delay=1000;
 const Stale_Time = 60_000;
@@ -69,8 +69,11 @@ function App() {
         <Route exact path ='/cars'>
           <Cars/>
         </Route>
-        <Route  path='/cars/:id'>
+        <Route exact path='/cars/:id'>
         <SingleCarPage/>
+        </Route>
+        <Route  path="/cars/:id/edit">
+          <EditCarPage/>
         </Route>
         <Route path='/login'>
           <Signin/>
