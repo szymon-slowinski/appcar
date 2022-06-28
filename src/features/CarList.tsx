@@ -72,9 +72,11 @@ export const CarList = () => {
                          <ReadMore/>
                          </IconButton>
                          </Link>
+                         <Link to={`/cars/${car.car_id}/edit`}>
                         <IconButton aria-label="Edit">
                         <Edit/>
                         </IconButton>
+                        </Link>
                         <IconButton aria-label="Delete">
                         <DeleteForever/>
                         </IconButton>

@@ -2,11 +2,11 @@ import { useParams} from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useSingleCar } from './useSingleCar';
 import { supabase } from "../db/Supabase";
-import { Cars } from "./useCars";
 import { useMutation, useQueryClient } from 'react-query';
+import { CarProperties } from './types';
 
-const updateCar = async ({car_id,make,model,production_year,registration_number,
-    vehicle_mileage,damage_history,car_review}: Cars) => {
+const updateCar = async ({make,model,production_year,registration_number,
+    vehicle_mileage,damage_history,car_review}: CarProperties, carId: string) => {
 const {data,error} = await supabase
 .from('cars')
 .update({
@@ -18,7 +18,7 @@ const {data,error} = await supabase
     damage_history,
     car_review
 })
-.eq("car_id",car_id)
+.eq("car_id",carId)
 if(error){
     throw new Error(error.message)
 }
@@ -30,9 +30,9 @@ export const useUpdateCarDetails = () => {
     const {carId} = useSingleCar(id)
     const queryClient = useQueryClient()
     return useMutation( 
-        async (values : Cars) => {
+        async (values : CarProperties) => {
             if(typeof carId === "string"){
-                return await updateCar({...values,car_id: carId})
+                return await updateCar(values,carId)
             }
         },
         {
