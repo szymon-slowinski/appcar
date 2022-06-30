@@ -15,6 +15,8 @@ export const EditCar = () => {
     const {data:cars,isLoading} = useSingleCar(id)
     const updateCarDetails = useUpdateCarDetails()
     const [dateReview] = useState(new Date())
+    const [dateProduction] = useState(new Date())
+   
     const handleDate = (value: Date | null) => {
         formikCarData.setFieldValue("production_year",value)
     }
@@ -26,7 +28,7 @@ export const EditCar = () => {
         initialValues: {
             make:cars?.make,
             model:cars?.model,
-            production_year: cars?.production_year,
+            production_year: dateProduction,
             registration_number:cars?.registration_number,
             vehicle_mileage:cars?.vehicle_mileage,
             damage_history:cars?.damage_history,
@@ -45,7 +47,7 @@ export const EditCar = () => {
               vehicle_mileage: values.vehicle_mileage,
               damage_history: values.damage_history,
               car_review: values.car_review.toISOString().split("T")[0],
-              production_year: values.production_year.slice(0,8)
+              production_year: values.production_year.toISOString().split("T")[0],
             });
           }
         }
@@ -99,7 +101,7 @@ export const EditCar = () => {
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                             <DatePicker
                             value={formikCarData.values.production_year}
-                            label="Production year"
+                            label={`Production year ${cars?.production_year}`}
                             onChange={(value: Date | null) =>handleDate(value)}
                             renderInput={(params) => <TextField{...params}/>}
                             />
@@ -147,7 +149,7 @@ export const EditCar = () => {
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                             <DatePicker 
                             value={formikCarData.values.car_review}
-                            label="Car Review"
+                            label={`Car Review  ${cars?.car_review} `}
                             onChange={(value: Date | null) =>handleDateReview(value)}
                             renderInput={(params) => <TextField{...params}/>}
                             />
