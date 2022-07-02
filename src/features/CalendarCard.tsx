@@ -1,56 +1,35 @@
-import { Box } from '@mui/material';
-import Paper from '@mui/material/Paper';
-import { ViewState,EditingState,IntegratedEditing } from '@devexpress/dx-react-scheduler';
-import {
-  Scheduler,
-  MonthView,
-  Appointments,
-  AppointmentForm,
-  Toolbar,
-  DateNavigator,
-  TodayButton
-} from '@devexpress/dx-react-scheduler-material-ui';
-import { ReactNode, useState } from 'react';
+import { Box, CircularProgress } from '@mui/material';
+import { Inject, ScheduleComponent,Day,Week,WorkWeek } from '@syncfusion/ej2-react-schedule';
+import { useState } from 'react';
+import { useReservation } from '../hooks/useReservation';
 
 
 export const CalendarCard = () => {
-  const [currentDate,setCurrentDate] = useState(new Date())
-  const schedulerData = [
-    { startDate: '2022-06-01T09:45', endDate: '2022-06-01T11:00', title: 'Meeting' },
-    { startDate: '2022-06-02T12:00', endDate: '2022-06-02T13:30', title: 'Go to a gym' },
-  ];
+const [currentDate] = useState(new Date())
+const {data:reservation,isLoading} = useReservation()
 
-  const handleDate = () => {
-    setCurrentDate(currentDate)
-  }
-
-  const saveAppointment = (data:ReactNode) => {
-    /* eslint-disable */ 
-    console.log("Commit changes")
-    console.log("data" + data)
-  }
 
     return (
+      (!isLoading ? (
         <Box sx={{width:"100%"}}>
-    <Paper>
-    <Scheduler
-    data={schedulerData}
-    >
-      <ViewState 
-      currentDate={currentDate}
-      onCurrentDateChange={handleDate}
-      />
-      <EditingState onCommitChanges={saveAppointment}/>
-      <IntegratedEditing/>
-      <MonthView />
-      <Toolbar/>
-      <DateNavigator/>
-      <TodayButton/>
-      <Appointments />
-      <AppointmentForm/>
-    </Scheduler>
-  </Paper>
-    </Box>
+        <ScheduleComponent selectedDate={currentDate}>
+          <Inject services={[Day,Week,WorkWeek]}/>
+        </ScheduleComponent>
+        {reservation.map((res) => (
+          <div key={res.reservation_id}>
+            <h3>{res.subject}</h3>
+            <h3>{res.starttime}</h3>
+            <h3>{res.endtime}</h3>
+            <h3>{res.road}</h3>
+            <h3>{res.name}</h3>
+            <h3>{res.surname}</h3>
+            <h3>{res.carid}</h3>
+          </div>
+        ))}
+        </Box>
+        
+      ) : <CircularProgress/> )
+    
     )
 }
 

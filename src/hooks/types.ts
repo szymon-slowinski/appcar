@@ -39,3 +39,17 @@ export interface CreateCar extends CarProperties {
     damage_history:string,
     car_review: string
 }
+
+export interface Reservation {
+   subject: string,
+   starttime:string,
+   endtime:string,
+   road:string,
+   name:string,
+   surname:string,
+   carid:string
+}
+
+export interface CarStatus {
+    status:boolean,
+}

@@ -1,8 +1,6 @@
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import LogoutIcon from '@mui/icons-material/Logout';
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import MenuIcon from "@mui/icons-material/Menu";
-import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
@@ -107,11 +105,6 @@ export default function AppBar(){
             onClick={() => logOutMutation.mutate()}
             >
                 <LogoutIcon />
-            </IconButton>
-            <IconButton color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
             </IconButton>
           </Toolbar>
         </ApplicationBar>

@@ -1,5 +1,5 @@
 import bmw from '../assets/img/bmw.jpg'
-import {  Avatar,  Card, CardActions, CardContent, CardMedia, CircularProgress,  Divider, IconButton, List, ListItem, ListItemAvatar, ListItemText, } from "@mui/material"
+import {  Avatar,  Card, CardActions, CardContent, CardMedia, CircularProgress,  Divider, IconButton, List, ListItem, ListItemAvatar, ListItemText, Skeleton, } from "@mui/material"
 import { Link, useParams } from "react-router-dom"
 import { useSingleCar } from "../hooks/useSingleCar"
 import { AddRoad, ArrowBack, CalendarMonth, CarCrashOutlined, DirectionsCar, Numbers } from '@mui/icons-material'
@@ -37,7 +37,7 @@ export const CarDetails = () => {
                         <DirectionsCar/> 
                         </Avatar>
                     </ListItemAvatar>
-                    <ListItemText primary="Make" secondary={cars?.make}/>
+                    <ListItemText primary="Make" secondary={isLoading ? <Skeleton animation="wave"/> : cars?.make}/>
                 </ListItem>
                 <Divider variant="inset" component="li"/>
                 <ListItem>
@@ -46,7 +46,7 @@ export const CarDetails = () => {
                         <DirectionsCar/>
                         </Avatar>
                     </ListItemAvatar>
-                    <ListItemText primary="Model" secondary={cars?.model}/>
+                    <ListItemText primary="Model" secondary={isLoading ? <Skeleton animation="wave"/> :cars?.model}/>
                 </ListItem>
                 <Divider variant="inset" component="li"/>
                 <ListItem>
@@ -55,7 +55,7 @@ export const CarDetails = () => {
                             <CalendarMonth/>
                         </Avatar>
                     </ListItemAvatar>
-                    <ListItemText primary="Production Year" secondary={cars?.production_year}/>
+                    <ListItemText primary="Production Year" secondary={isLoading ? <Skeleton animation="wave"/> :cars?.production_year}/>
                 </ListItem>
                 <Divider variant="inset" component="li"/>
                 <ListItem>
@@ -64,7 +64,7 @@ export const CarDetails = () => {
                             <Numbers/>
                         </Avatar>
                     </ListItemAvatar>
-                    <ListItemText primary="Registration Number" secondary={cars?.registration_number}/>
+                    <ListItemText primary="Registration Number" secondary={isLoading ? <Skeleton animation="wave"/> :cars?.registration_number}/>
                 </ListItem>
                 <Divider variant="inset" component="li"/>
                 <ListItem>
@@ -73,7 +73,7 @@ export const CarDetails = () => {
                             <AddRoad/>
                         </Avatar>
                     </ListItemAvatar>
-                    <ListItemText primary="Vehicle Mileage" secondary={cars?.vehicle_mileage}/>
+                    <ListItemText primary="Vehicle Mileage" secondary={isLoading ? <Skeleton animation="wave"/> :cars?.vehicle_mileage}/>
                 </ListItem>
                 <Divider variant="inset" component="li"/>
                 <ListItem>
@@ -82,7 +82,7 @@ export const CarDetails = () => {
                             <CarCrashOutlined/>
                         </Avatar>
                     </ListItemAvatar>
-                    <ListItemText primary="Damage history" secondary={cars?.damage_history}/>
+                    <ListItemText primary="Damage history" secondary={isLoading ? <Skeleton animation="wave"/> :cars?.damage_history}/>
                 </ListItem>
                 <Divider variant="inset" component="li"/>
                 <ListItem>
@@ -91,7 +91,7 @@ export const CarDetails = () => {
                         <CalendarMonth/>
                         </Avatar>
                     </ListItemAvatar>
-                    <ListItemText primary="Car Review" secondary={cars?.car_review}/>
+                    <ListItemText primary="Car Review" secondary={isLoading ? <Skeleton animation="wave"/> :cars?.car_review}/>
                 </ListItem>
                 <Divider variant="inset" component="li"/>
             </List>

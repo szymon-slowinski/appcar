@@ -1,4 +1,4 @@
-import { Avatar, Box,Button,Card, CardActions, CardContent, CardHeader, CardMedia, Container, createTheme, Grid, IconButton, Stack, ThemeProvider, Typography } from "@mui/material"
+import { Avatar, Box,Button,Card, CardActions, Stack, CardContent, CardHeader, CardMedia, CircularProgress, Container, createTheme, Grid, IconButton, ThemeProvider, Typography } from "@mui/material"
 import { useCars } from "../hooks/useCars"
 import { AddCardModal } from "./AddCarModal"
 import bmw from "../assets/img/bmw.jpg"
@@ -10,9 +10,10 @@ import Footer from "../components/Footer"
 const theme = createTheme()
 
 export const CarList = () => {
-    const {data: cars} = useCars()
+    const {data: cars, isLoading} = useCars()
     
     return(
+      (!isLoading ? (
         <ThemeProvider theme={theme}>
             <Box sx={{
             pt: 6,
@@ -89,5 +90,7 @@ export const CarList = () => {
             </Container>
             <Footer/>
         </ThemeProvider>
+      ) : <CircularProgress/>)
+        
     )
 }
