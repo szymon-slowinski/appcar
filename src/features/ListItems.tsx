@@ -11,7 +11,7 @@ import { Link } from '@mui/material';
 
 export const mainListItems = (
   <React.Fragment>
-    <Link href='/dashboard'>
+    <Link color="inherit" underline="none" href='/dashboard'>
     <ListItemButton>
       <ListItemIcon>
           <DashboardIcon/>
@@ -19,15 +19,15 @@ export const mainListItems = (
       <ListItemText primary="Dashboard" />
     </ListItemButton>
     </Link> 
-    <Link href='/profile'>
+    <Link color="inherit" underline="none" href='/profile'>
     <ListItemButton>
       <ListItemIcon>
         <AccountCircleRounded/>
       </ListItemIcon>
-      <ListItemText primary="Profile" />
+      <ListItemText  primary="Profile" />
     </ListItemButton>
     </Link>
-    <Link href='/reservation#'>
+    <Link color="inherit"  underline="none" href='/reservation#'>
     <ListItemButton>
       <ListItemIcon>
         <EventNoteRoundedIcon/>
@@ -35,7 +35,7 @@ export const mainListItems = (
       <ListItemText primary="Reservation" />
     </ListItemButton>
     </Link>
-    <Link href='/calendar'>
+    <Link color="inherit" underline="none" href='/calendar'>
     <ListItemButton>
       <ListItemIcon>
         <CalendarMonthRoundedIcon/>
@@ -43,7 +43,7 @@ export const mainListItems = (
       <ListItemText primary="Calendar" />
     </ListItemButton>
     </Link>
-    <Link href='/cars'>
+    <Link color="inherit" underline="none" href='/cars'>
     <ListItemButton>
       <ListItemIcon>
         <DirectionsCarFilledRoundedIcon/>

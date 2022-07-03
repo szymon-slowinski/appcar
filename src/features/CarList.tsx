@@ -23,10 +23,10 @@ export const CarList = () => {
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
               There are all your cars. You can manage all of them.
             </Typography>
-            <Stack sx={{ pt: 1 }}
-              direction="row"
-              spacing={2}
-              justifyContent="center">
+            <Stack sx={{ pt: 1,direction:"row",
+              spacing:2,
+              justifyContent:"center"}}
+              >
                 <AddCardModal/>
             </Stack>
             </Container>

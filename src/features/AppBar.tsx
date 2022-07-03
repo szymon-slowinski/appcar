@@ -10,6 +10,7 @@ import useLogOut from '../hooks/useLogOut';
 import { ChevronLeft } from '@mui/icons-material';
 import { mainListItems } from './ListItems';
 import { useUser } from '../hooks/useUser';
+
 const drawerWidth = 240;
 
 interface AppBarProps extends MuiAppBarProps{
@@ -122,7 +123,11 @@ export default function AppBar(){
             </IconButton>
           </Toolbar>
           <Divider />
-          <List component="nav">
+          <List sx={{
+            display: "flex",
+            flexDirection:"column",
+            alignContent:"center",
+          }} component="nav">
             {mainListItems} 
           </List>
         </Drawer>

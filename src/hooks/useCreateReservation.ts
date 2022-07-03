@@ -54,7 +54,7 @@ export const useCreateReservation = () => {
                 async(value : CarStatus) => {
                     if(typeof carId === "string"){
                      await updateCarStatus(value,carId)
-                     return await insertReservationData(values,carId)
+                     await insertReservationData(values,carId)
                     } 
                 } 
             } 

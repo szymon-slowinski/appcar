@@ -49,6 +49,12 @@ export const CarsTable = () => {
             width: 200,
             editable: false,
           },
+          {
+            field: 'status',
+            headerName: 'Status',
+            width: 200,
+            editable: false,
+          },
         {
           field: "actions",
           headerName: "Action",
