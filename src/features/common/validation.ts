@@ -42,3 +42,13 @@ export const repeatPasswordSchema = yup.object().shape({
   password: createPasswordValidation,
   passwordConf: yup.string().oneOf([yup.ref("password"),null], "Password must be the same")
 });
+
+export const ReservationAddValidation = yup.object().shape({
+  subject: yup.string().required(`Subject ${isRequired}`),
+  starttime:yup.string().required(`Start Time ${isRequired}`),
+  endtime:yup.string().required(`End Time ${isRequired}`),
+  road:yup.string().required(`Road ${isRequired}`),
+  name:yup.string().required(`Name ${isRequired}`),
+  surname:yup.string().required(`Surname ${isRequired}`),
+  carid:yup.string().required(`You have to chose the car ${isRequired}`),
+}) 

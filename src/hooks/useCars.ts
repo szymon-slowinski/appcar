@@ -10,6 +10,7 @@ export interface Cars {
     vehicle_mileage: number,
     damage_history: string,
     car_review: string,
+    status:boolean,
 }
 
 const getCars = async() => {

@@ -25,10 +25,11 @@ if(!isLoading){
   const events: Array<AppointmentModel> = reservation.map((res) => {
     return {
       reservation_id:res.reservation_id,
-      title: res.subject + res.carid,
+      title: res.subject,
       startDate: res.starttime, 
       endDate:res.endtime,
-      notes: res.name + res.surname + res.road,
+      notes: "Name:" + res.name + " Surname: "+ res.surname 
+      + " Road: " + res.road + " CarId: " + res.carid
     }
   })
   setData(events)
