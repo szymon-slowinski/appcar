@@ -13,16 +13,35 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { createPasswordValidation, emailValidation } from './common/validation';
+import React, { useState } from 'react';
 
 const theme = createTheme();
 
+export interface ShowingPassword{
+  password: string,
+  showPassword: boolean
+}
+
 export  function SignForm() {
+  const [password,setPassword] = useState<ShowingPassword>({
+    password: '',
+    showPassword:false
+  })
   const history = useHistory()
   const createUserMutation = useCreateUser()
+
+
+  const handleClickShowPassword = () => {
+    setPassword({
+      ...password,
+      showPassword:!password.showPassword
+    })
+  }
+
   const formik = useFormik({
     initialValues: {
       email: "",
-      password: "",
+      password: password.password,
       name: "",
       surname: "",
     },
@@ -105,7 +124,8 @@ export  function SignForm() {
                 fullWidth                
                 name="password"
                 label="Password"
-                type="password"
+                type={password.showPassword ? "text" : "password"}
+                onClick={handleClickShowPassword}
                 id="password"
                 onChange={formik.handleChange}
                 autoComplete="current-password"

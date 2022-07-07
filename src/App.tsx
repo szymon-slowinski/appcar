@@ -23,6 +23,8 @@ const Cars = React.lazy(() => import('./components/Cars'))
 const ForgotPasswordForm = React.lazy(() => import('./components/ForgotPasswordForm'))
 const SingleCarPage = React.lazy(()=> import('./components/SingleCarPage'))
 const EditCarPage = React.lazy(()=> import('./components/EditCarPage'))
+const ReservationPage = React.lazy(()=> import('./components/ReservationPage'))
+const EditReservationPage = React.lazy(()=> import('./components/EditReservationPage'))
 
 const Retry_Delay=1000;
 const Stale_Time = 60_000;
@@ -65,6 +67,12 @@ function App() {
         </Route>
         <Route path='/calendar'>
           <Calendar/>
+        </Route>
+        <Route exact path='/reservation'>
+          <ReservationPage/>
+        </Route>
+        <Route exact  path="/reservation/:id/edit">
+          <EditReservationPage/>
         </Route>
         <Route exact path ='/cars'>
           <Cars/>

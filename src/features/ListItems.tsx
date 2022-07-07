@@ -27,7 +27,7 @@ export const mainListItems = (
       <ListItemText  primary="Profile" />
     </ListItemButton>
     </Link>
-    <Link color="inherit"  underline="none" href='/reservation#'>
+    <Link color="inherit"  underline="none" href='/reservation'>
     <ListItemButton>
       <ListItemIcon>
         <EventNoteRoundedIcon/>

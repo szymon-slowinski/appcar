@@ -12,6 +12,7 @@ import { CarsTable } from "./CarsTable";
 import Footer from "../components/Footer";
 import { CarDetails } from "./CarDetails";
 import { EditCar } from "./EditCar";
+import { ReservationTable } from "./ReservationTable";
 
 const mdTheme = createTheme();
 
@@ -79,6 +80,39 @@ export const  LayoutUserProfile = () => {
           </Grid>
         </Container>
         <Footer/>
+      </Box>
+    </Box>
+  </ThemeProvider>
+  )
+}
+
+export const  ReservationLayout = () => {
+  return(
+      <ThemeProvider theme={mdTheme}>
+    <Box sx={{ display: "flex" }}>
+      <CssBaseline />
+      <AppBar/>
+      <Box
+        component="main"
+        sx={{
+          backgroundColor: (theme) =>
+            theme.palette.mode === "light"
+              ? theme.palette.grey[100]
+              : theme.palette.grey[900],
+          flexGrow: 1,
+          height: "100vh",
+          overflow: "auto"
+        }}
+      >
+        <Container maxWidth="lg" sx={{ 
+          mt: 4, 
+          mb: 4,
+          pt:6,
+          }}>
+          <ReservationTable/>
+          <Footer/>
+        </Container>
+        
       </Box>
     </Box>
   </ThemeProvider>
