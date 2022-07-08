@@ -109,7 +109,9 @@ export const  ReservationLayout = () => {
           mb: 4,
           pt:6,
           }}>
+          <Paper>
           <ReservationTable/>
+          </Paper>
           <Footer/>
         </Container>
         
