@@ -1,6 +1,4 @@
 import { toast } from 'react-toastify';
-import { useSingleCar } from './useSingleCar';
-import { useParams } from 'react-router-dom';
 import { useMutation, useQueryClient } from 'react-query';
 import { useHistory } from 'react-router-dom';
 import { supabase } from '../db/Supabase';
@@ -8,7 +6,7 @@ import { CarStatus, Reservation } from './types';
 
 
 const insertReservationData = async({subject,starttime,endtime,
-    road,name,surname,carid}:Reservation, car_Id:string) => {
+    road,name,surname,carid}:Reservation) => {
         const {data,error} = await supabase.from("reservation").insert({
             subject,
             starttime,
@@ -18,7 +16,7 @@ const insertReservationData = async({subject,starttime,endtime,
             surname,
             carid
         })
-        .eq("carid",car_Id)
+        .eq("carid",carid)
         if(error){
             throw new Error(error.message)
         }
@@ -41,21 +39,21 @@ const insertReservationData = async({subject,starttime,endtime,
 
 export const useCreateReservation = () => {
     const history = useHistory()
-    const {id} = useParams<{id: string}>()
-    const {carId} = useSingleCar(id)
     const queryClient = useQueryClient()
 
     return useMutation(
         async(values : Reservation) => {
+            /*eslint-disable */
+            debugger;
             if(!values.carid){
                 throw new Error("You did not chose your car")
             }
             else {
-                async(value : CarStatus) => {
-                    if(typeof carId === "string"){
-                     await updateCarStatus(value,carId)
-                     await insertReservationData(values,carId)
-                    } 
+                await insertReservationData(values)
+               if(values.name){
+                async(value : CarStatus) => { 
+                    await updateCarStatus(value,values.carid)
+               } 
                 } 
             } 
         },

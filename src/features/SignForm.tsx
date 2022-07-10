@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { createPasswordValidation, emailValidation } from './common/validation';
-import React, { useState } from 'react';
+import  { useState } from 'react';
 
 const theme = createTheme();
 

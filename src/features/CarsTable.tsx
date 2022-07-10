@@ -5,9 +5,6 @@ import { useCars } from "../hooks/useCars"
 export const CarsTable = () => {
     const columns =[
         {
-          field:'car_id', headerName:'ID',width:200
-        },
-        {
           field: 'make',
           headerName: 'Make',
           width: 200,

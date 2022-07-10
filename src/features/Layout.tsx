@@ -16,9 +16,9 @@ import { ReservationTable } from "./ReservationTable";
 
 const mdTheme = createTheme();
 
-export const  Layout = () => {
-    return(
-        <ThemeProvider theme={mdTheme}>
+export const SimpleLayout=({children}:{children:React.ReactChild})=>{
+  return (
+    <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar/>
@@ -35,203 +35,84 @@ export const  Layout = () => {
           }}
         >
           <Container maxWidth="lg" sx={{ 
-            mt: 4, 
-            mb: 4,
+            mt: 8, 
+            mb: 2,
             pt:6,
             }}>
             <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                <CarsTable/>
-                </Paper>
-              </Grid>
+              {children}
             </Grid>
           </Container>
           <Footer/>
         </Box>
       </Box>
     </ThemeProvider>
+  )
+}
+
+export const  Layout = () => {
+    return(
+        <SimpleLayout>
+              <Grid item xs={12}>
+                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                <CarsTable/>
+                </Paper>
+              </Grid>
+          </SimpleLayout>
     )
 }
 
 
-
 export const  LayoutUserProfile = () => {
   return(
-      <ThemeProvider theme={mdTheme}>
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar/>
-      <Box
-        component="main"
-        sx={{
-          backgroundColor: (theme) =>
-            theme.palette.mode === "light"
-              ? theme.palette.grey[100]
-              : theme.palette.grey[900],
-          flexGrow: 1,
-          height: "100vh",
-          overflow: "auto"
-        }}
-      >
-        <Container maxWidth="lg" sx={{ mt: 12, mb: 4 }}>
-          <Grid  container spacing={3}>
+    <SimpleLayout>
+       <Grid  container spacing={3}>
           <UserProfileCard/>
           </Grid>
-        </Container>
-        <Footer/>
-      </Box>
-    </Box>
-  </ThemeProvider>
+    </SimpleLayout>
   )
 }
 
 export const  ReservationLayout = () => {
   return(
-      <ThemeProvider theme={mdTheme}>
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar/>
-      <Box
-        component="main"
-        sx={{
-          backgroundColor: (theme) =>
-            theme.palette.mode === "light"
-              ? theme.palette.grey[100]
-              : theme.palette.grey[900],
-          flexGrow: 1,
-          height: "100vh",
-          overflow: "auto"
-        }}
-      >
-        <Container maxWidth="lg" sx={{ 
-          mt: 4, 
-          mb: 4,
-          pt:6,
-          }}>
-          <Paper>
-          <ReservationTable/>
-          </Paper>
-          <Footer/>
-        </Container>
-        
-      </Box>
-    </Box>
-  </ThemeProvider>
+     <SimpleLayout>
+       <Grid item xs={12}>
+                <Paper sx={{ height:"100%", p: 2, display: 'flex', flexDirection: 'column' }}>
+                <ReservationTable/>
+                </Paper>
+              </Grid>
+     </SimpleLayout>
   )
 }
 
 export const  CalendarLayout = () => {
   return(
-      <ThemeProvider theme={mdTheme}>
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar/>
-      <Box
-        component="main"
-        sx={{
-          backgroundColor: (theme) =>
-            theme.palette.mode === "light"
-              ? theme.palette.grey[100]
-              : theme.palette.grey[900],
-          flexGrow: 1,
-          height: "100vh",
-          overflow: "auto"
-        }}
-      >
-        <Container 
-         sx={{ mt: 12, mb: 4, width: "100%", height:"50vh" }}>
-          <CalendarCard/>
-          <Footer/>
-        </Container>
-      </Box>
-    </Box>
-  </ThemeProvider>
+   <SimpleLayout>
+    <CalendarCard/>
+   </SimpleLayout>
   )
 }
 
 export const  CarLayout = () => {
   return(
-      <ThemeProvider theme={mdTheme}>
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar/>
-      <Box
-        component="main"
-        sx={{
-          backgroundColor: (theme) =>
-            theme.palette.mode === "light"
-              ? theme.palette.grey[100]
-              : theme.palette.grey[900],
-          flexGrow: 1,
-          height: "100vh",
-          overflow: "auto"
-        }}
-      >
-        <Container 
-         sx={{ mt: 6, mb: 4, width: "100%", height:"50vh" }}>
-          <CarCard/>
-        </Container>
-      </Box>
-    </Box>
-  </ThemeProvider>
+      <SimpleLayout>
+        <CarCard/>
+      </SimpleLayout>
   )
 }
 
 export const  SingleCarLayout = () => {
   return(
-      <ThemeProvider theme={mdTheme}>
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar/>
-      <Box
-        component="main"
-        sx={{
-          backgroundColor: (theme) =>
-            theme.palette.mode === "light"
-              ? theme.palette.grey[100]
-              : theme.palette.grey[900],
-          flexGrow: 1,
-          height: "100vh",
-          overflow: "auto"
-        }}
-      >
-        <Container 
-         sx={{ mt: 12, mb: 4, width: "100%", height:"50vh" }}>
-          <CarDetails/>
-          <Footer/>
-        </Container>
-      </Box>
-    </Box>
-  </ThemeProvider>
+    <SimpleLayout>
+      <CarDetails/>
+    </SimpleLayout>
   )
 }
 
 export const  SingleCarLayoutEdit = () => {
   return(
-      <ThemeProvider theme={mdTheme}>
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar/>
-      <Box
-        component="main"
-        sx={{
-          backgroundColor: (theme) =>
-            theme.palette.mode === "light"
-              ? theme.palette.grey[100]
-              : theme.palette.grey[900],
-          flexGrow: 1,
-          height: "100vh",
-          overflow: "auto"
-        }}
-      >
-        <Container 
-         sx={{ mt: 12, mb: 4, width: "100%", height:"50vh" }}>
-          <EditCar/>
-          <Footer/>
-        </Container>
-      </Box>
-    </Box>
-  </ThemeProvider>
+   <SimpleLayout>
+    <EditCar/>
+   </SimpleLayout>
   )
 }

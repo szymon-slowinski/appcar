@@ -31,6 +31,23 @@ export const useReservation = () => {
     )
     return{
         ...query,
-        data: query.data?.reservation || []
+        data: query.data?.reservation.map((res) => ({
+      reservation_id:res.reservation_id,
+      title: res.subject,
+      startDate: res.starttime, 
+      endDate:res.endtime,
+      notes: "Name:" + res.name + " Surname: "+ res.surname 
+      + " Road: " + res.road + " CarId: " + res.carid
+    })) || []
     }
+}
+
+export const useAllReservation = () => {
+    const query = useQuery(['reservation'],() =>
+    getReservation()
+    )
+return {
+    ...query,
+    data: query.data?.reservation || []
+}
 }

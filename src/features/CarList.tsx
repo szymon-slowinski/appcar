@@ -5,7 +5,6 @@ import bmw from "../assets/img/bmw.jpg"
 import { blue } from "@mui/material/colors"
 import { DeleteForever, Edit, ReadMore } from "@mui/icons-material"
 import { Link } from "react-router-dom"
-import Footer from "../components/Footer"
 
 const theme = createTheme()
 
@@ -16,10 +15,8 @@ export const CarList = () => {
       (!isLoading ? (
         <ThemeProvider theme={theme}>
             <Box sx={{
-            pt: 6,
-            pb: 6,
           }}>
-            <Container maxWidth="sm">
+            <Container maxWidth="lg">
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
               There are all your cars. You can manage all of them.
             </Typography>
@@ -31,7 +28,7 @@ export const CarList = () => {
             </Stack>
             </Container>
             </Box>
-            <Container sx={{ py:0.5}} maxWidth="lg">
+            <Container maxWidth="lg">
             <Grid container spacing={4}>
             {cars?.map((car) => (
                 <Grid item key={car.car_id} xs={12} sm={6} md={4}>
@@ -88,7 +85,6 @@ export const CarList = () => {
             ))}
             </Grid>
             </Container>
-            <Footer/>
         </ThemeProvider>
       ) : <CircularProgress/>)
         

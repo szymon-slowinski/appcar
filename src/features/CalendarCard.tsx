@@ -1,6 +1,6 @@
 import { Box, CircularProgress, Container, Typography,} from '@mui/material';
 import Paper from '@mui/material/Paper';
-import { AppointmentModel, EditingState, IntegratedEditing, ViewState } from '@devexpress/dx-react-scheduler';
+import { EditingState, IntegratedEditing, ViewState,ChangeSet } from '@devexpress/dx-react-scheduler';
 import {
   Scheduler,
   MonthView,
@@ -8,47 +8,16 @@ import {
   AppointmentTooltip,
   AppointmentForm,
 } from '@devexpress/dx-react-scheduler-material-ui';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useReservation } from '../hooks/useReservation';
 import { AddReservationModal } from './AddReservationModal';
 
-
-
-
 export const CalendarCard = () => {
 const [currentDate] = useState(new Date())
-const {data:reservation,isLoading} = useReservation()
-const [data,setData] = useState<AppointmentModel []>([])
+const {data,isLoading} = useReservation()
 
-useEffect(()=>{
-if(!isLoading){
-  const events: Array<AppointmentModel> = reservation.map((res) => {
-    return {
-      reservation_id:res.reservation_id,
-      title: res.subject,
-      startDate: res.starttime, 
-      endDate:res.endtime,
-      notes: "Name:" + res.name + " Surname: "+ res.surname 
-      + " Road: " + res.road + " CarId: " + res.carid
-    }
-  })
-  setData(events)
-  /*eslint-disable */
-  console.log(data)
-} 
-},[isLoading])
-
-const saveAppointment = async (data:any) => {
-  const appointment = data.added
-  const title = appointment.title
-  const startTime = appointment.startDate.toISOString()
-  const endtTime = appointment.endDate.toISOString()
-  
-  /*eslint-disable */
-  console.log(startTime)
-}
-
-
+/*eslint-disable */
+const handleChange=(changes: ChangeSet)=>{}
 
     return (
       (!isLoading ? (
@@ -64,7 +33,7 @@ const saveAppointment = async (data:any) => {
         <Paper>
           <Scheduler data={data}>
             <ViewState currentDate={currentDate}/>
-            <EditingState  onCommitChanges={saveAppointment}/>
+            <EditingState onCommitChanges={handleChange}/>
             <IntegratedEditing/>
             <MonthView/>
             <Appointments/>
@@ -77,17 +46,6 @@ const saveAppointment = async (data:any) => {
             />
           </Scheduler>
         </Paper>
-        {reservation.map((res) => (
-          <div key={res.reservation_id}>
-            <h3>{res.subject}</h3>
-            <h3>{res.starttime}</h3>
-            <h3>{res.endtime}</h3>
-            <h3>{res.road}</h3>
-            <h3>{res.name}</h3>
-            <h3>{res.surname}</h3>
-            <h3>{res.carid}</h3>
-          </div>
-        ))}
         </Box>
       ) : <CircularProgress/> )
     
