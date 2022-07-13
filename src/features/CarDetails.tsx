@@ -1,19 +1,20 @@
 import bmw from '../assets/img/bmw.jpg'
-import {  Avatar,  Card, CardActions, CardContent, CardMedia, CircularProgress,  Divider, IconButton, List, ListItem, ListItemAvatar, ListItemText, Skeleton, } from "@mui/material"
+import {  Avatar,  Box,  Card, CardActions, CardContent, CardMedia, CircularProgress,  Divider, IconButton, List, ListItem, ListItemAvatar, ListItemText, Skeleton, } from "@mui/material"
 import { Link, useParams } from "react-router-dom"
-import { useSingleCar } from "../hooks/useSingleCar"
-import { AddRoad, ArrowBack, CalendarMonth, CarCrashOutlined, DirectionsCar, Numbers } from '@mui/icons-material'
+import { useDeleteSingleCar, useSingleCar } from "../hooks/useSingleCar"
+import { AddRoad, ArrowBack, CalendarMonth, CarCrashOutlined, DeleteForever, DirectionsCar, Numbers } from '@mui/icons-material'
+
 
 
 
 export const CarDetails = () => {
     const {id} = useParams<{id:string}>()
     const {data:cars,isLoading} = useSingleCar(id)
- 
+    const deleteCar = useDeleteSingleCar()
     return (
-    (!isLoading ?  (
+    (!isLoading && cars ?  (
         <div>
-           <Card sx={{display: 'flex', maxHeight:"75vH", maxWidth:"70vw"}}>
+           <Card sx={{display: 'flex', maxHeight:"80vH", maxWidth:"70vw"}}>
            <CardActions>
             <Link to="/cars">
             <IconButton>
@@ -94,8 +95,18 @@ export const CarDetails = () => {
                     <ListItemText primary="Car Review" secondary={isLoading ? <Skeleton animation="wave"/> :cars?.car_review}/>
                 </ListItem>
                 <Divider variant="inset" component="li"/>
+                <CardActions>
+                <Box sx={{
+                    display:"flex",
+                }}>
+                <IconButton  onClick={() => deleteCar.mutate(cars.car_id)} aria-label="Delete">
+                <DeleteForever/>
+                </IconButton>
+                </Box>
+            </CardActions>
             </List>
             </CardContent>
+            
            </Card>
         </div>
     ) : <CircularProgress/> )

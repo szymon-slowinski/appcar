@@ -3,7 +3,7 @@ import { useCars } from "../hooks/useCars"
 import { AddCardModal } from "./AddCarModal"
 import bmw from "../assets/img/bmw.jpg"
 import { blue } from "@mui/material/colors"
-import { DeleteForever, Edit, ReadMore } from "@mui/icons-material"
+import { Edit, ReadMore } from "@mui/icons-material"
 import { Link } from "react-router-dom"
 
 const theme = createTheme()
@@ -75,9 +75,6 @@ export const CarList = () => {
                         <Edit/>
                         </IconButton>
                         </Link>
-                        <IconButton aria-label="Delete">
-                        <DeleteForever/>
-                        </IconButton>
                        </CardActions>
                        <Button size="small">Reserve Car</Button>
                      </Card>
