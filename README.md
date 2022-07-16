@@ -32,7 +32,7 @@
 5.Write in console ```npm start```<br/>
 6.Open http://localhost:3000 with your browser to see the result.
 
-# Using DOCKER
+### Using DOCKER
 After fourth step:<br/>
 5.Install DOCKER https://www.docker.com/ <br/>
 6.Write in console:<br/>
