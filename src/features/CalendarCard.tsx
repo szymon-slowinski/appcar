@@ -24,7 +24,7 @@ const handleChange=(changes: ChangeSet)=>{}
         <Box sx={{width:"100%", display:"flex", flexDirection:"column",}}>
        <Container>
         <Typography variant="h5" align="center" color="text.secondary" paragraph>
-        There are cars reservation. You can manage all of them.
+        Your car fleet. You can manage all of them.
         </Typography>
         <Box sx={{display:"flex",flexDirection:"row-reverse"}}>
         <AddReservationModal/>
