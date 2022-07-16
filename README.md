@@ -25,7 +25,7 @@
 ### Using NPM
 1.Create account and get your API at https://supabase.com/ <br/>
 2.Clone the repo
-```git clone https://github.com/szymon-slowinski/Dog2Add```
+```git clone https://github.com/szymon-slowinski/Dog2Add```<br/>
 3.Install NPM packages ```npm install```<br/>
 4.Create file .env.local and add your all API keys <br/> ```REACT_APP_SUPABASE_URL= YOUR API URL```<br/>
  ``` REACT_APP_SUPABASE_PUBLIC_KEY=YOUR API PUBLIC KEY```<br/>
