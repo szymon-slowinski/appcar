@@ -9,16 +9,20 @@ import { AccountCircleRounded } from '@mui/icons-material';
 import DirectionsCarFilledRoundedIcon from '@mui/icons-material/DirectionsCarFilledRounded';
 import { Link } from '@mui/material';
 
-export const mainListItems = (
-  <React.Fragment>
-    <Link color="inherit" underline="none" href='/dashboard'>
+const MenuItem=({href,name,icon}:{href:string,name:string,icon:React.ReactChild})=>{
+  return (<Link color="inherit" underline="none" href={href}>
     <ListItemButton>
       <ListItemIcon>
-          <DashboardIcon/>
+          {icon}
       </ListItemIcon>
-      <ListItemText primary="Dashboard" />
+      <ListItemText primary={name} />
     </ListItemButton>
-    </Link> 
+    </Link>) 
+}
+
+export const mainListItems = (
+  <React.Fragment>
+    <MenuItem href="/dashboard" name="Dashboard" icon={<DashboardIcon/>} />
     <Link color="inherit" underline="none" href='/profile'>
     <ListItemButton>
       <ListItemIcon>

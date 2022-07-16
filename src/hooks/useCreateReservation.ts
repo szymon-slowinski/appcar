@@ -50,10 +50,9 @@ export const useCreateReservation = () => {
             }
             else {
                 await insertReservationData(values)
+                //get current car status
                if(values.name){
-                async(value : CarStatus) => { 
-                    await updateCarStatus(value,values.carid)
-               } 
+                 await updateCarStatus({status:true},values.carid)
                 } 
             } 
         },

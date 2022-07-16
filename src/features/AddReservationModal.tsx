@@ -4,10 +4,11 @@ import { FormikProvider, useFormik } from "formik"
 import { useState } from "react"
 import { useHistory } from "react-router-dom"
 import { useCars } from "../hooks/useCars"
-import { useCreateReservation } from "../hooks/useCreateReservation"
+//import { useCreateReservation } from "../hooks/useCreateReservation"
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers"
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { ReservationAddValidation } from "./common/validation"
+import { FormInput } from "./common/FormInput"
+//import { ReservationAddValidation } from "./common/validation"
 
 const style = {
     position: 'absolute',
@@ -31,7 +32,6 @@ export const AddReservationModal = () => {
     const [open, setOpen] = useState(false)
     const [startTime] = useState(new Date())
     const [endTime] = useState(new Date())
-    const [carId, setCarId] = useState("")
     const { data: cars } = useCars()
     const history = useHistory()
     
@@ -53,11 +53,10 @@ export const AddReservationModal = () => {
     }
 
     const handleCarIdChange = (event: SelectChangeEvent<string>) => {
-        setCarId(event.target.value)
-        event.preventDefault()
+        formik.setFieldValue("carid", event.target.value)
     }
 
-    const createReservationMutation = useCreateReservation()
+    //const createReservationMutation = useCreateReservation()
     
     const formik = useFormik({
         initialValues: {
@@ -67,17 +66,19 @@ export const AddReservationModal = () => {
             road: "",
             name: "",
             surname: "",
-            carid: carId
+            carid: ""
         },
         enableReinitialize: true,
-        validationSchema: ReservationAddValidation,
+        //validationSchema: ReservationAddValidation,
         onSubmit: values => {
-            createReservationMutation.mutate({
-                ...values,
-                starttime: values.starttime.toISOString(),
-                endtime: values.endtime.toISOString(),
-                carid: values.carid
-            })
+            /*eslint-disable*/
+            console.log(values)
+            // createReservationMutation.mutate({
+            //     ...values,
+            //     starttime: values.starttime.toISOString(),
+            //     endtime: values.endtime.toISOString(),
+            //     carid: values.carid
+            // })
             history.push("/calendar")
         }
     })
@@ -108,18 +109,7 @@ export const AddReservationModal = () => {
                         <FormikProvider value={formik}>
                             <Box component="form" onSubmit={formik.handleSubmit}
                                 sx={{ mt: 1 }}>
-                                <TextField
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    id="subject"
-                                    label="Subject"
-                                    name="subject"
-                                    autoComplete="subject"
-                                    onChange={formik.handleChange}
-                                    autoFocus
-                                    helperText={formik.touched.subject && formik.errors.subject}
-                                />
+                                <FormInput name="subject"/>
                                 <TextField
                                     margin="normal"
                                     required
@@ -160,7 +150,7 @@ export const AddReservationModal = () => {
                                 <InputLabel id="carid">Chose your Car</InputLabel>
                                 <Select fullWidth labelId="carid"
                                     id="carid-select"
-                                    value={carId}
+                                    value={formik.values.carid}
                                     onChange={handleCarIdChange}
                                     label="carid"
                                 >
