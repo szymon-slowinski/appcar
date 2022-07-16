@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Container, CssBaseline, TextField, Typography } from "@mui/material";
+import { Avatar, Box, Button, Container, CssBaseline,Typography } from "@mui/material";
 import { createTheme,ThemeProvider } from "@mui/material/styles";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Navbar from "./Navbar";
@@ -7,6 +7,7 @@ import {  useEffect, useState } from "react";
 import { useResetPasswordConfirmation } from "../hooks/useResetPasswordConfirmation";
 import { repeatPasswordSchema } from "../features/common/validation";
 import { useHistory ,useLocation } from "react-router-dom";
+import { FormInput } from "../features/common/FormInput";
 
 const theme = createTheme()
 
@@ -62,30 +63,8 @@ export default function ForgotPasswordForm () {
         </Typography>
         <FormikProvider value={formik}>
         <Box component="form" onSubmit={formik.handleSubmit}   sx={{ mt: 1 }}>
-        <TextField
-                margin="normal"
-                required
-                fullWidth                
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                onChange={formik.handleChange}
-                autoComplete="new-password"
-                 helperText={formik.touched.password && formik.errors.password}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth                
-                name="passwordConfirmation"
-                label="Repeat Password"
-                type="password"
-                id="passwordConfirmation"
-                onChange={formik.handleChange}
-                autoComplete="new-password"
-                helperText={formik.touched.passwordConfirmation && formik.errors.passwordConfirmation}
-              />
+        <FormInput name="password" type="password"/>
+        <FormInput name="passwordConfirmation" type="password"/>
           <Button
             type="submit"
             fullWidth

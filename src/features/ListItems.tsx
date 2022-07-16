@@ -23,37 +23,9 @@ const MenuItem=({href,name,icon}:{href:string,name:string,icon:React.ReactChild}
 export const mainListItems = (
   <React.Fragment>
     <MenuItem href="/dashboard" name="Dashboard" icon={<DashboardIcon/>} />
-    <Link color="inherit" underline="none" href='/profile'>
-    <ListItemButton>
-      <ListItemIcon>
-        <AccountCircleRounded/>
-      </ListItemIcon>
-      <ListItemText  primary="Profile" />
-    </ListItemButton>
-    </Link>
-    <Link color="inherit"  underline="none" href='/reservation'>
-    <ListItemButton>
-      <ListItemIcon>
-        <EventNoteRoundedIcon/>
-      </ListItemIcon>
-      <ListItemText primary="Reservation" />
-    </ListItemButton>
-    </Link>
-    <Link color="inherit" underline="none" href='/calendar'>
-    <ListItemButton>
-      <ListItemIcon>
-        <CalendarMonthRoundedIcon/>
-      </ListItemIcon>
-      <ListItemText primary="Calendar" />
-    </ListItemButton>
-    </Link>
-    <Link color="inherit" underline="none" href='/cars'>
-    <ListItemButton>
-      <ListItemIcon>
-        <DirectionsCarFilledRoundedIcon/>
-      </ListItemIcon>
-      <ListItemText primary="Cars" />
-    </ListItemButton>
-    </Link>
+    <MenuItem href='/profile' name='Profile' icon={<AccountCircleRounded/>}/>
+    <MenuItem href='/reservation' name='Reservation' icon={<EventNoteRoundedIcon/>}/>
+    <MenuItem href='/calendar' name='Calendar' icon={<CalendarMonthRoundedIcon/>}/>
+    <MenuItem href='/cars' name='Cars' icon={<DirectionsCarFilledRoundedIcon/>}/>
   </React.Fragment>
 );

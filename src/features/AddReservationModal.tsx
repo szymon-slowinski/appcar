@@ -4,11 +4,11 @@ import { FormikProvider, useFormik } from "formik"
 import { useState } from "react"
 import { useHistory } from "react-router-dom"
 import { useCars } from "../hooks/useCars"
-//import { useCreateReservation } from "../hooks/useCreateReservation"
+import { useCreateReservation } from "../hooks/useCreateReservation"
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers"
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { FormInput } from "./common/FormInput"
-//import { ReservationAddValidation } from "./common/validation"
+import { ReservationAddValidation } from "./common/validation"
 
 const style = {
     position: 'absolute',
@@ -56,7 +56,7 @@ export const AddReservationModal = () => {
         formik.setFieldValue("carid", event.target.value)
     }
 
-    //const createReservationMutation = useCreateReservation()
+    const createReservationMutation = useCreateReservation()
     
     const formik = useFormik({
         initialValues: {
@@ -69,16 +69,14 @@ export const AddReservationModal = () => {
             carid: ""
         },
         enableReinitialize: true,
-        //validationSchema: ReservationAddValidation,
+        validationSchema: ReservationAddValidation,
         onSubmit: values => {
-            /*eslint-disable*/
-            console.log(values)
-            // createReservationMutation.mutate({
-            //     ...values,
-            //     starttime: values.starttime.toISOString(),
-            //     endtime: values.endtime.toISOString(),
-            //     carid: values.carid
-            // })
+            createReservationMutation.mutate({
+                ...values,
+                 starttime: values.starttime.toISOString(),
+                 endtime: values.endtime.toISOString(),
+                carid: values.carid
+             })
             history.push("/calendar")
         }
     })
@@ -109,43 +107,11 @@ export const AddReservationModal = () => {
                         <FormikProvider value={formik}>
                             <Box component="form" onSubmit={formik.handleSubmit}
                                 sx={{ mt: 1 }}>
-                                <FormInput name="subject"/>
-                                <TextField
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    id="road"
-                                    label="Road"
-                                    name="road"
-                                    autoComplete="road"
-                                    onChange={formik.handleChange}
-                                    autoFocus
-                                    helperText={formik.touched.road && formik.errors.road}
-                                />
-                                  <TextField
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    id="name"
-                                    label="Name"
-                                    name="name"
-                                    autoComplete="name"
-                                    onChange={formik.handleChange}
-                                    autoFocus
-                                    helperText={formik.touched.name && formik.errors.name}
-                                />
-                                <TextField
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    id="surname"
-                                    label="Surname"
-                                    name="surname"
-                                    autoComplete="surname"
-                                    onChange={formik.handleChange}
-                                    autoFocus
-                                    helperText={formik.touched.surname && formik.errors.surname}
-                                />
+                                <FormInput name="subject" type='text'/>
+                                <FormInput name="road" type='text'/>
+                                <FormInput name="label" type='text'/>
+                                <FormInput name="name" type='text' />
+                                <FormInput name="surname" type='text'/>
                                 <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
                                 <InputLabel id="carid">Chose your Car</InputLabel>
                                 <Select fullWidth labelId="carid"
