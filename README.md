@@ -1,46 +1,55 @@
-# Getting Started with Create React App
+# Content of Project
+* [Information](#information)
+* [Technologies](#technologies)
+* [Setup](#setup)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Information
+<details>
+<summary>Click here to see general information about <b>Project</b>!</summary>
+<b>iCARED</b>. Website application dedicated to managing cars. Users can add their car fleet. The application allows booking a car at a convenient and available time. Intuitive interface shows which car is free or rented. All events can be found in the Calendar, where current information about booked vehicles are shown.
+</details>
 
-In the project directory, you can run:
+## Technologies
+<ul> 
+<li>React</li>
+<li>TypeScript</li>
+<li>Supabase</li>
+<li>React Query</li>
+<li>Docker</li>
+<li>Material UI</li>
+</ul>
 
-### `npm start`
+## Setup
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Using NPM
+1.Create account and get your API at https://supabase.com/ <br/>
+2.Clone the repo
+```git clone https://github.com/szymon-slowinski/Dog2Add```
+3.Install NPM packages ```npm install```<br/>
+4.Create file .env.local and add your all API keys <br/> ```REACT_APP_SUPABASE_URL= YOUR API URL```<br/>
+ ``` REACT_APP_SUPABASE_PUBLIC_KEY=YOUR API PUBLIC KEY```<br/>
+5.Write in console ```npm start```
+6.Open http://localhost:3000 with your browser to see the result.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Using DOCKER
+After fourth step:<br/>
+5.Install DOCKER https://www.docker.com/ <br/>
+6.Write in console:<br/>
+``` docker build -t sample:dev . ```<br/>
+<b>Next:<b/>
+``` 
+docker run \
+    -it \
+    --rm \
+    -v ${PWD}:/app \
+    -v /app/node_modules \
+    -p 3001:3000 \
+    -e CHOKIDAR_USEPOLLING=true \
+    sample:dev 
+ ```
+ <br/>
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<b>After that:<b/><br/>
+``` docker run -it --rm -v ${PWD}:/app -v /app/node_modules -p 3001:3000 -e CHOKIDAR_USEPOLLING=true sample:dev ```<br/>
+7.Open http://localhost:3001 with your browser to see the result.
