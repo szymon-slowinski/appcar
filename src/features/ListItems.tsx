@@ -9,47 +9,23 @@ import { AccountCircleRounded } from '@mui/icons-material';
 import DirectionsCarFilledRoundedIcon from '@mui/icons-material/DirectionsCarFilledRounded';
 import { Link } from '@mui/material';
 
+const MenuItem=({href,name,icon}:{href:string,name:string,icon:React.ReactChild})=>{
+  return (<Link color="inherit" underline="none" href={href}>
+    <ListItemButton>
+      <ListItemIcon>
+          {icon}
+      </ListItemIcon>
+      <ListItemText primary={name} />
+    </ListItemButton>
+    </Link>) 
+}
+
 export const mainListItems = (
   <React.Fragment>
-    <Link color="inherit" underline="none" href='/dashboard'>
-    <ListItemButton>
-      <ListItemIcon>
-          <DashboardIcon/>
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
-    </ListItemButton>
-    </Link> 
-    <Link color="inherit" underline="none" href='/profile'>
-    <ListItemButton>
-      <ListItemIcon>
-        <AccountCircleRounded/>
-      </ListItemIcon>
-      <ListItemText  primary="Profile" />
-    </ListItemButton>
-    </Link>
-    <Link color="inherit"  underline="none" href='/reservation'>
-    <ListItemButton>
-      <ListItemIcon>
-        <EventNoteRoundedIcon/>
-      </ListItemIcon>
-      <ListItemText primary="Reservation" />
-    </ListItemButton>
-    </Link>
-    <Link color="inherit" underline="none" href='/calendar'>
-    <ListItemButton>
-      <ListItemIcon>
-        <CalendarMonthRoundedIcon/>
-      </ListItemIcon>
-      <ListItemText primary="Calendar" />
-    </ListItemButton>
-    </Link>
-    <Link color="inherit" underline="none" href='/cars'>
-    <ListItemButton>
-      <ListItemIcon>
-        <DirectionsCarFilledRoundedIcon/>
-      </ListItemIcon>
-      <ListItemText primary="Cars" />
-    </ListItemButton>
-    </Link>
+    <MenuItem href="/dashboard" name="Dashboard" icon={<DashboardIcon/>} />
+    <MenuItem href='/profile' name='Profile' icon={<AccountCircleRounded/>}/>
+    <MenuItem href='/reservation' name='Reservation' icon={<EventNoteRoundedIcon/>}/>
+    <MenuItem href='/calendar' name='Calendar' icon={<CalendarMonthRoundedIcon/>}/>
+    <MenuItem href='/cars' name='Cars' icon={<DirectionsCarFilledRoundedIcon/>}/>
   </React.Fragment>
 );

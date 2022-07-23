@@ -12,7 +12,7 @@ export default function Navbar() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            HiCar
+            iCARED
           </Typography>
           <Stack direction="row" spacing={2}>
           <Button href='/' color="inherit">Home</Button>

@@ -106,7 +106,6 @@ export const CarDetails = () => {
             </CardActions>
             </List>
             </CardContent>
-            
            </Card>
         </div>
     ) : <CircularProgress/> )

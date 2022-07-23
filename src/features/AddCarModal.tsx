@@ -8,6 +8,7 @@ import { useCreateCar } from '../hooks/useCreateCar';
 import { CarAddValidation } from './common/validation';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { useHistory} from 'react-router-dom';
+import { FormInput } from './common/FormInput';
 
 const style = {
 position: 'absolute',
@@ -93,75 +94,19 @@ export const AddCardModal = () => {
             </Typography>
             <FormikProvider value={formik}>
             <Box component="form" onSubmit={formik.handleSubmit} sx={{mt:1}}>
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="make"
-                label="Make"
-                name="make"
-                autoComplete="make"
-                onChange={formik.handleChange}
-                autoFocus
-                helperText={formik.touched.make && formik.errors.make}
-              />
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="model"
-                label="Model"
-                name="model"
-                autoComplete="model"
-                onChange={formik.handleChange}
-                autoFocus
-                helperText={formik.touched.model && formik.errors.model}
-              />
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <FormInput name="make" type='text'/>
+            <FormInput name='model' type='text'/>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker 
                 value={formik.values.production_year}
                 label="Production year"
                 onChange={(value: Date | null) =>handleDate(value)}
                 renderInput={(params) => <TextField{...params}/>}
-                />
+            />
               </LocalizationProvider>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="registration_number"
-                label="Registration Number"
-                name="registration_number"
-                autoComplete="Registration number"
-                onChange={formik.handleChange}
-                autoFocus
-                helperText={formik.touched.registration_number && formik.errors.registration_number}
-              />
-               <TextField
-                margin="normal"
-                required
-                type='number'
-                fullWidth
-                id="vehicle_mileage"
-                label="Vehicle mileage"
-                name="vehicle_mileage"
-                autoComplete="vehicle_mileage"
-                onChange={formik.handleChange}
-                autoFocus
-                helperText={formik.touched.vehicle_mileage && formik.errors.vehicle_mileage}
-              />
-               <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="damage_history"
-                label="Damage history"
-                name="damage_history"
-                autoComplete="damage_history"
-                onChange={formik.handleChange}
-                autoFocus
-                helperText={formik.touched.damage_history && formik.errors.damage_history}
-              />
+              <FormInput name='registration_number' type='text'/>
+              <FormInput name='vehicle_mileage' type='text'/>
+              <FormInput name='damage_history' type='text'/>
                <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker 
                 value={formik.values.car_review}
