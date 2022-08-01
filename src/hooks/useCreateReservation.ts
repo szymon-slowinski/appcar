@@ -1,13 +1,14 @@
+import { useSingleCar} from './useSingleCar';
 import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from 'react-query';
 import { useHistory } from 'react-router-dom';
 import { supabase } from '../db/Supabase';
-import { CarStatus, Reservation } from './types';
+import { CarStatus,Reservation } from './types';
 
 
 const insertReservationData = async({subject,starttime,endtime,
     road,name,surname,carid}:Reservation) => {
-        const {data,error} = await supabase.from("reservation").insert({
+        const {data,error} = await supabase.from<Reservation>("reservation").insert({
             subject,
             starttime,
             endtime,
@@ -20,7 +21,7 @@ const insertReservationData = async({subject,starttime,endtime,
         if(error){
             throw new Error(error.message)
         }
-        return data
+        return data[0]
     }
 
     const updateCarStatus = async ({status}: CarStatus, carId: string) => {
@@ -37,27 +38,33 @@ const insertReservationData = async({subject,starttime,endtime,
     }
     
 
+
 export const useCreateReservation = () => {
     const history = useHistory()
     const queryClient = useQueryClient()
-
+    
     return useMutation(
         async(values : Reservation) => {
-            /*eslint-disable */
-            debugger;
             if(!values.carid){
                 throw new Error("You did not chose your car")
             }
             else {
-                await insertReservationData(values)
-                //get current car status
-               if(values.name){
-                 await updateCarStatus({status:true},values.carid)
-                } 
+                const data=await insertReservationData(values)
+                return data;
+                
             } 
         },
         {
-            onSuccess: () => {
+            onSuccess: (data) => {
+                /*eslint-disable*/
+                debugger;
+                const {data:car}=useSingleCar(data.carid)
+                if(car?.status){
+                    updateCarStatus({status:false},data.carid)
+                   }
+                   else{
+                       throw new Error ("That Car is already booked")
+                   }
                 toast.success("Reservation done")
                 queryClient.invalidateQueries(['cars','reservation'])
                 history.push('/reservation')
