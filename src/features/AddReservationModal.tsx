@@ -109,7 +109,6 @@ export const AddReservationModal = () => {
                                 sx={{ mt: 1 }}>
                                 <FormInput name="subject" type='text'/>
                                 <FormInput name="road" type='text'/>
-                                <FormInput name="label" type='text'/>
                                 <FormInput name="name" type='text' />
                                 <FormInput name="surname" type='text'/>
                                 <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
@@ -120,13 +119,13 @@ export const AddReservationModal = () => {
                                     onChange={handleCarIdChange}
                                     label="carid"
                                 >
-                                    {cars.map((car) => (
+                                    {cars.filter((car) => car.status === true).map((car) => (
                                         <MenuItem
-                                            key={car.car_id}
-                                            value={car.car_id}
-                                        >
-                                           {car.make +" "+ car.model} 
-                                        </MenuItem>
+                                        key={car.car_id}
+                                        value={car.car_id}
+                                    >
+                                       {car.make +" "+ car.model} 
+                                    </MenuItem>
                                     ))}
                                 </Select>
                                 </FormControl>
