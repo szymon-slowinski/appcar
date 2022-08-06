@@ -13,6 +13,7 @@ import Footer from "../components/Footer";
 import { CarDetails } from "./CarDetails";
 import { EditCar } from "./EditCar";
 import { ReservationTable } from "./ReservationTable";
+import { AboutUs } from "./AboutUs";
 
 const mdTheme = createTheme();
 
@@ -35,6 +36,7 @@ export const SimpleLayout=({children}:{children:React.ReactChild})=>{
           }}
         >
           <Container maxWidth="lg" sx={{ 
+            mr: 1,
             mt: 8, 
             mb: 2,
             pt:6,
@@ -114,5 +116,13 @@ export const  SingleCarLayoutEdit = () => {
    <SimpleLayout>
     <EditCar/>
    </SimpleLayout>
+  )
+}
+
+export const AboutLayout = () => {
+  return (
+    <div>
+      <AboutUs/>
+      </div>
   )
 }
