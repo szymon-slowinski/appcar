@@ -36,7 +36,8 @@ export const CarList = () => {
                     sx={{ height:'100%',
                     maxWidth:400,
                      display:'flex',
-                     flexDirection: 'column' }}
+                     flexDirection: 'column',
+                    }}
                      >
                         <CardHeader
                         avatar={
